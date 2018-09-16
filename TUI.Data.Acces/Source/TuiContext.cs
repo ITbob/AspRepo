@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InteractivePreGeneratedViews;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,22 +8,24 @@ using System.Threading.Tasks;
 using TUI.Places.Source;
 using TUI.Transportations.Air;
 
-namespace TUI.Data.Acces.Source
+namespace TUI.Data.Access.Source
 {
     public class TuiContext: DbContext//, IDatabaseInitializer<TuiContext>
     {
         public DbSet<Flight> Flights { get; set; }
-
         public DbSet<Airport> Airports { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         //public void InitializeDatabase(TuiContext context)
         //{
         //    //what to do
         //}
 
-        public TuiContext()
+        public TuiContext() : base()
         {
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TuiContext>());
+            // Enable DbModelStore before creating your first DbContext.
+            // Do not call this method when using migrations, as they are currently not supported.
+            //Database.SetInitializer<TuiContext>(new CreateDatabaseIfNotExists<TuiContext>());
         }
 
 
@@ -32,7 +35,7 @@ namespace TUI.Data.Acces.Source
             modelBuilder.Entity<Flight>().Ignore(b => b.Arrival);
             modelBuilder.Entity<Flight>().Ignore(b => b.Departure);
 
-            modelBuilder.Entity<Flight>()
+            modelBuilder.Entity<Flight>()   
                 .HasRequired(c => c.DepartureAirport)
                 .WithMany()
                 .WillCascadeOnDelete(false);

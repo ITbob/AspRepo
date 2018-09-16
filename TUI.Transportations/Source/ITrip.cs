@@ -12,7 +12,7 @@ namespace TUI.Transportations
     /// </summary>
     public interface ITrip
     {
-        Double GetDistance();
+        Double GetDistanceKm();
         Location Departure { get; }
         Location Arrival { get; }
         TimeSpan Duration { get; set; }

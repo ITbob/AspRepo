@@ -13,17 +13,25 @@ namespace TUI.Places.Source
     {
         [Key]
         public Int32 Id { get; set; }
-        public Location Location { get; set; }
+
+        [ForeignKey("Location")]
+        public Int32 LocationId { get; set; }
+        public virtual Location Location { get; set; }
         public String Name { get; set; }
 
         [ForeignKey("City")]
         public Int32? CityId { get; set; }
         public virtual City City { get; set; }
+
+        public override string ToString()
+        {
+            return City != null ? $"{Name} ({City.Name})" : Name;
+        }
     }
 
     public static class AirportFactory
     {
-        public static Airport GetAirport(Double latitude, Double longitude, String name)
+        public static Airport GetAirport(Double latitude, Double longitude, String name, City city)
         {
             return new Airport()
             {
@@ -32,7 +40,8 @@ namespace TUI.Places.Source
                     Longitude = longitude,
                     Latitude = latitude
                 },
-                Name = name
+                Name = name,
+                City = city
             };
         }
     }

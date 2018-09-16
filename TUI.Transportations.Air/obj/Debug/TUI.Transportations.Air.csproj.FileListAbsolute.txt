@@ -16,3 +16,6 @@ C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\Enti
 C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Places.dll.config
 C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Transportations.dll.config
 C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Places.Air.dll
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Places.Air.pdb
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Places.Air.dll.config

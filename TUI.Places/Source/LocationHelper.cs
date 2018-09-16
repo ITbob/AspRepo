@@ -20,8 +20,8 @@ namespace TUI.Places.Source
             var v = 0.5 - Math.Cos((b.Latitude - a.Latitude) * degreePi) / 2 +
                     Math.Cos(a.Latitude * degreePi) * Math.Cos(b.Latitude * degreePi) *
                     (1 - Math.Cos((b.Longitude - a.Longitude) * degreePi)) / 2;
-
-            return 12742 * Math.Asin(Math.Sqrt(v)); // 2 * R; R = 6371 km
+            var result= 12742 * Math.Asin(Math.Sqrt(v)); // 2 * R; R = 6371 km
+            return result;
         }
     }
 }

@@ -9,9 +9,18 @@ namespace TUI.Transportations.Air.Source
 {
     public static class FlightFactory
     {
-        public static Flight Get(Airport departure, Airport arrival)
+        public static Flight Get(Airport departure, Airport arrival
+            , DateTime departureTime, DateTime arrivalTime)
         {
-            return new Flight(departure, arrival);
+            var plane = new Plane();
+            plane.Name = @"airbus a380";
+            plane.KilometersHourSpeed = 900;
+
+            return new Flight(departure, arrival) {
+                Plane = plane,
+                StartDate = departureTime,
+                EndDate = arrivalTime
+            };
         }
     }
 }

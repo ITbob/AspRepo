@@ -50,8 +50,13 @@
     <Compile Include="Source\Flight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\FlightFactory.cs" />
+    <Compile Include="Source\Plane.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TUI.Places.Air\TUI.Places.Air.csproj">
+      <Project>{d2a8b781-9339-436d-8295-80046a10262c}</Project>
+      <Name>TUI.Places.Air</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TUI.Places\TUI.Places.csproj">
       <Project>{d86db577-3604-4072-8a8d-c3e1b6a546ec}</Project>
       <Name>TUI.Places</Name>
