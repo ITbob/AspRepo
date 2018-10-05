@@ -1,22 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using TUI.Data.Access.Source;
+using TUI.Data.Access.Source.Unit;
 using TUI.Places.Source;
+using TUI.Project1.Models;
 using TUI.Transportations.Air;
 
 namespace TUI.Project1.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BasicController
     {
-        private IEnumerable<Airport> _airports;
+        private readonly IUnit<Airport> _airportUnit;
+        private readonly IUnit<Flight> _flightUnit;
+
+        public HomeController(IUnit<Airport> airportUnit, IUnit<Flight> flightUnit)
+        {
+            _airportUnit = airportUnit;
+            _flightUnit = flightUnit;
+        }
+
+
+        private Boolean HasAirport(String airportName)
+        {
+            using (var session = this._airportUnit.GetSession())
+            {
+                var airportRepo = session.GetRepository();
+                return airportRepo.Find(airport => airport.Name == airportName).Any();
+            }
+        }
 
         public ActionResult Index()
         {
-            return View();
+            return View(new FlightSearch());
         }
 
         [HttpPost]
@@ -24,91 +40,101 @@ namespace TUI.Project1.Controllers
         {
             var airportTextInfo = value;
 
-            this._airports = DataAccessLayer.GetAllAirports();
-
-            var matchedAirport = this._airports.Where(airport =>
-                airport.Name.ToLower().Contains(airportTextInfo.ToLower())
-                || (airport.City != null && airport.City.Name.ToLower().Contains(airportTextInfo.ToLower()))
-                ).ToList().
-                    Select(x => // circular references that json cannot serialize
-                    new {Id = x.Id,
-                        Name = x.Name,
-                        City = x.City.Name }); 
-
-            Debug.WriteLine($"{value} - airports count {matchedAirport.Count()}");
-            foreach (var selectedAirport in matchedAirport)
-            {
-                Debug.WriteLine($"{selectedAirport.Name} ({selectedAirport.City})");
-            }
-
-            if(this.IsFound(airportTextInfo, matchedAirport))
+            if (String.IsNullOrEmpty(airportTextInfo))
             {
                 return Json(new List<Airport>(), JsonRequestBehavior.AllowGet);
             }
-            else
+
+            using (var session = this._airportUnit.GetSession())
             {
-                return Json(matchedAirport.ToList(), JsonRequestBehavior.AllowGet);
+                var airportRepo = session.GetRepository();
+
+                var matchedAirport = airportRepo.Find(airport =>
+                    airport.Name.ToLower().Contains(airportTextInfo.ToLower())
+                    || (airport.City != null && airport.City.Name.ToLower().Contains(airportTextInfo.ToLower()))
+                    ).ToList().
+                        Select(x => // circular references that json cannot serialize
+                        new
+                        {
+                            Id = x.Id,
+                            Name = x.Name,
+                            City = x.City.Name
+                        });
+
+                if (this.IsFound(airportTextInfo, matchedAirport))
+                {
+                    return Json(new List<Airport>(), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(matchedAirport.ToList(), JsonRequestBehavior.AllowGet);
+                }
             }
         }
 
         private Boolean IsFound(String value, IEnumerable<dynamic> airports)
         {
-            return airports.Count() == 1
-                && (value.ToLower() == airports.First().City.ToLower()
-                        || value.ToLower() == airports.First().Name.ToLower());
-        }
-
-        private Boolean HasAirport(String airportName)
-        {
-            return DataAccessLayer.GetAllAirports().
-                Where(airport => airport.Name == airportName).Any();
-        }
-
-        [HttpPost]
-        public ActionResult GetFlights(String departureName, String beginningDate, String arrivalName, String endingDate)
-        {
-            if (!HasAirport(departureName))
-            {
-                return RedirectToAction("index","Error", new { ErrorMessage = "The airport of departure is not found." });
-            }
-
-            if (!HasAirport(arrivalName))
-            {
-                return RedirectToAction("index", "Error", new { ErrorMessage = "The airport of arrival is not found." });
-            }
-
-            var departureAirport = DataAccessLayer.GetAllAirports().
-                Where(airport => airport.Name == departureName).Single();
-
-            var arrivalAirport = DataAccessLayer.GetAllAirports().
-                Where(airport => airport.Name == arrivalName).Single();
-
-            if(IsDate(beginningDate) && IsDate(endingDate))
-            {
-                ViewBag.flights = DataAccessLayer.
-                GetFlights(departureAirport, arrivalAirport, DateTime.Parse(beginningDate), DateTime.Parse(endingDate));
-            }
-            else
-            {
-                ViewBag.flights = DataAccessLayer.
-                GetFlights(departureAirport, arrivalAirport);
-            }
-
-            return View("Index");// Json(flights, JsonRequestBehavior.AllowGet);
-        }
-
-        private Boolean IsDate(String value)
-        {
-            try
-            {
-                DateTime.Parse(value);
-            }
-            catch (Exception e)
+            if (!airports.Any())
             {
                 return false;
             }
+            else
+            {
+                var count = airports.Count();
+                var airport = airports.First().Name.ToLower();
 
-            return true;
+                return count == 1
+                    && (value.ToLower() == airports.First().City.ToLower()
+                            || value.ToLower() == airport.ToLower());
+            }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetFlights([Bind(Include = "DepartureAirport,ArrivalAirport,beginningDate,endingDate")] FlightSearch search)
+        {
+            if (!HasAirport(search.DepartureAirport))
+            {
+                return GetUnavailableItemNotification("departure");
+            }
+
+            if (!HasAirport(search.ArrivalAirport))
+            {
+                return GetUnavailableItemNotification("arrival");
+            }
+
+            Airport departureAirport = null;
+            Airport arrivalAirport = null;
+
+            using (var session = this._airportUnit.GetSession())
+            {
+                departureAirport = session.GetRepository().Find((a) => a.Name == search.DepartureAirport).Single();
+                arrivalAirport = session.GetRepository().Find((a) => a.Name == search.ArrivalAirport).Single();
+            }
+
+            using (var session = this._flightUnit.GetSession())
+            {
+                var flightRepo = session.GetRepository();
+
+                if (search.BeginningDate != DateTime.MinValue && search.EndingDate != DateTime.MinValue)
+                {
+                    ViewBag.flights = flightRepo.Find(flight =>
+                        flight.DepartureAirport.Id == departureAirport.Id
+                        && flight.ArrivalAirport.Id == arrivalAirport.Id
+                        && search.BeginningDate <= flight.StartDate
+                        && flight.StartDate <= search.EndingDate);
+                }
+                else
+                {
+                    ViewBag.flights = flightRepo.Find(flight => flight.DepartureAirport.Id == departureAirport.Id
+                        && flight.ArrivalAirport.Id == arrivalAirport.Id);
+                }
+            }
+
+            ViewBag.previousResearch = search;
+
+            return View("FlightDetails");
+        }
+
     }
 }

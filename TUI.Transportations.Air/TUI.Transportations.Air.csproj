@@ -49,10 +49,27 @@
   <ItemGroup>
     <Compile Include="Source\Flight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\FlightFactory.cs" />
     <Compile Include="Source\Plane.cs" />
+    <Compile Include="Source\PlaneKind.cs" />
+    <Compile Include="Source\PlaneKindFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TUI.Distance.Calculator\TUI.Distance.Calculator.csproj">
+      <Project>{1a7bfe15-c4ab-4d43-a960-93610d67d8e3}</Project>
+      <Name>TUI.Distance.Calculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Gasoline.Calculator\TUI.Consumption.Calculator.csproj">
+      <Project>{9cd15b5b-b8a8-42ae-b090-453a8c2c1685}</Project>
+      <Name>TUI.Consumption.Calculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Gasoline\TUI.Gasoline.csproj">
+      <Project>{27162197-8457-49B6-AE21-DC96AE4643A8}</Project>
+      <Name>TUI.Gasoline</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Model.Shared\TUI.Model.Shared.csproj">
+      <Project>{FCEAAB1E-1596-433F-B51F-2C029418D119}</Project>
+      <Name>TUI.Model.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TUI.Places.Air\TUI.Places.Air.csproj">
       <Project>{d2a8b781-9339-436d-8295-80046a10262c}</Project>
       <Name>TUI.Places.Air</Name>
@@ -60,6 +77,10 @@
     <ProjectReference Include="..\TUI.Places\TUI.Places.csproj">
       <Project>{d86db577-3604-4072-8a8d-c3e1b6a546ec}</Project>
       <Name>TUI.Places</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.TimeZone\TUI.TimeZone.csproj">
+      <Project>{B46C2EF2-E9CF-4703-B88A-60622EF61F25}</Project>
+      <Name>TUI.TimeZone</Name>
     </ProjectReference>
     <ProjectReference Include="..\TUI.Transportations\TUI.Transportations.csproj">
       <Project>{1b7f6c32-dda1-4fcd-a671-583484bc8012}</Project>

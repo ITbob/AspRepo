@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataFeatures.cs" />
+    <Compile Include="DalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,14 @@
       <Project>{4FCEE010-1484-400F-8EED-AFC08FC669EC}</Project>
       <Name>TUI.Data.Access</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TUI.Gasoline\TUI.Gasoline.csproj">
+      <Project>{27162197-8457-49B6-AE21-DC96AE4643A8}</Project>
+      <Name>TUI.Gasoline</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Model.Shared\TUI.Model.Shared.csproj">
+      <Project>{FCEAAB1E-1596-433F-B51F-2C029418D119}</Project>
+      <Name>TUI.Model.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TUI.Places.Air\TUI.Places.Air.csproj">
       <Project>{D2A8B781-9339-436D-8295-80046A10262C}</Project>
       <Name>TUI.Places.Air</Name>
@@ -79,6 +88,10 @@
     <ProjectReference Include="..\TUI.Transportations.Air\TUI.Transportations.Air.csproj">
       <Project>{E90F39E7-C0F6-4C32-A230-EBDC3D057C5C}</Project>
       <Name>TUI.Transportations.Air</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Transportations\TUI.Transportations.csproj">
+      <Project>{1B7F6C32-DDA1-4FCD-A671-583484BC8012}</Project>
+      <Name>TUI.Transportations</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

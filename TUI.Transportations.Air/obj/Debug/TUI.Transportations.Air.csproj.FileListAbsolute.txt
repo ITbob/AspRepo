@@ -19,3 +19,16 @@ C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\Enti
 C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Places.Air.dll
 C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Places.Air.pdb
 C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Places.Air.dll.config
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Gasoline.dll
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Gasoline.pdb
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Consumption.Calculator.dll
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Consumption.Calculator.pdb
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Gasoline.dll.config
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.TimeZone.dll
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\RestSharp.dll
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.TimeZone.pdb
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\RestSharp.xml
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Model.Shared.dll
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Model.Shared.pdb
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Distance.Calculator.dll
+C:\Users\Freddy\source\repos\TUI.Project1\TUI.Transportations.Air\bin\Debug\TUI.Distance.Calculator.pdb

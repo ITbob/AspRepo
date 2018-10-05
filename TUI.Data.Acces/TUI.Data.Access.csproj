@@ -51,13 +51,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\DataAccessLayer.cs" />
-    <Compile Include="Source\DataInitializer.cs" />
+    <Compile Include="Source\Factory\ContainerFactory.cs" />
+    <Compile Include="Source\Factory\RepoFactory.cs" />
+    <Compile Include="Source\Repositories\TuiContextRepository.cs" />
+    <Compile Include="Source\Repositories\CityRepository.cs" />
+    <Compile Include="Source\Repositories\LocationRepository.cs" />
+    <Compile Include="Source\Repositories\PlaneRepository.cs" />
+    <Compile Include="Source\Session\ISession.cs" />
+    <Compile Include="Source\Session\TuiContextSession.cs" />
+    <Compile Include="Source\Session\TuiContextStringLessSession.cs" />
+    <Compile Include="Source\TuiDataHelper.cs" />
+    <Compile Include="Source\Repositories\AirportRepository.cs" />
+    <Compile Include="Source\Repositories\FlightRepository.cs" />
+    <Compile Include="Source\Repositories\IRepository.cs" />
+    <Compile Include="Source\TuiInitializer.cs" />
     <Compile Include="Source\Factory\ContextGenerator.cs" />
     <Compile Include="Source\Factory\IGenerateContext.cs" />
     <Compile Include="Source\TuiContext.cs" />
+    <Compile Include="Source\TuiTestInitializer.cs" />
+    <Compile Include="Source\Unit\AirportUnit.cs" />
+    <Compile Include="Source\Unit\CityUnit.cs" />
+    <Compile Include="Source\Unit\FlightUnit.cs" />
+    <Compile Include="Source\Unit\IUnit.cs" />
+    <Compile Include="Source\Unit\LocationUnit.cs" />
+    <Compile Include="Source\Unit\PlaneUnit.cs" />
+    <Compile Include="Source\Unit\TuiContextUnit.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TUI.Gasoline\TUI.Gasoline.csproj">
+      <Project>{27162197-8457-49B6-AE21-DC96AE4643A8}</Project>
+      <Name>TUI.Gasoline</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Model.Shared\TUI.Model.Shared.csproj">
+      <Project>{FCEAAB1E-1596-433F-B51F-2C029418D119}</Project>
+      <Name>TUI.Model.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TUI.Places.Air\TUI.Places.Air.csproj">
       <Project>{d2a8b781-9339-436d-8295-80046a10262c}</Project>
       <Name>TUI.Places.Air</Name>
@@ -69,6 +97,10 @@
     <ProjectReference Include="..\TUI.Transportations.Air\TUI.Transportations.Air.csproj">
       <Project>{E90F39E7-C0F6-4C32-A230-EBDC3D057C5C}</Project>
       <Name>TUI.Transportations.Air</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Transportations\TUI.Transportations.csproj">
+      <Project>{1B7F6C32-DDA1-4FCD-A671-583484BC8012}</Project>
+      <Name>TUI.Transportations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -15,9 +15,10 @@ namespace TUI.Transportations
         Double GetDistanceKm();
         Location Departure { get; }
         Location Arrival { get; }
-        TimeSpan Duration { get; set; }
 
         DateTime StartDate { get; set; }
-        DateTime EndDate { get; set; }
+
+        TimeSpan GetDuration();
+        DateTime GetEndDate();
     }
 }

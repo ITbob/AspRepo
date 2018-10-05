@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/css/bootstrap-combobox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Customised/HomeStyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Customised/SharedStyle.css">
+</head>
+
+<body class="background">
+    <script>
+        $(document).ready(function () {
+            $('#'+'@ViewContext.Controller.ValueProvider.GetValue("controller").RawValue'+'Button').addClass("active");
+        });
+    </script>
+
+    <ul>
+        <li>
+            <a id="HomeButton" href="@Url.Action("index", "Home")">Home</a>
+        </li><li>
+            <a id="AiportsButton" href="@Url.Action("index", "Airports")">Airports</a>
+        </li><li>
+            <a id="CitiesButton" href="@Url.Action("index", "Cities")">Cities</a>
+        </li><li>
+            <a id="FlightsButton" href="@Url.Action("index", "Flights")">Flights</a>
+        </li>
+    </ul>
+    <br>
+    <div class="basicContainer">
+        <div>
+            @RenderBody()
+            <br>
+            <div class="basicButton">
+                @Html.ActionLink("back home page.", "index", "Home", null, null)
+            </div>
+        </div>
+    </div>
+    <br>
+</body>
+</html>

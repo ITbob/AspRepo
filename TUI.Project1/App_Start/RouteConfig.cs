@@ -15,13 +15,26 @@ namespace TUI.Project1
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index"}
             );
+
             routes.MapRoute(
-                "Error",
-                "{controller}/{action}/{ErrorMessage}",
-                new { controller = "Error", action = "Index", ErrorMessage = UrlParameter.Optional }  
+                name: "Flight",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Flights", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Airports",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Airports", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Cities",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Cities", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

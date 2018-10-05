@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\IStartingDeviceKind.cs" />
+    <Compile Include="Source\ITransportationDevice.cs" />
     <Compile Include="Source\ITrip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

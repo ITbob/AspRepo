@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutWebsite.cshtml";
+}
+
+@if (String.IsNullOrEmpty(ViewBag.Notification))
+{
+    @Html.DisplayText("An Error happened.");
+}
+else
+{
+    @ViewBag.Notification
+}

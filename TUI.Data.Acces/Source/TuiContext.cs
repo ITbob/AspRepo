@@ -7,19 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using TUI.Places.Source;
 using TUI.Transportations.Air;
+using TUI.Transportations.Air.Source;
 
 namespace TUI.Data.Access.Source
 {
-    public class TuiContext: DbContext//, IDatabaseInitializer<TuiContext>
+    public class TuiContext: DbContext
     {
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Airport> Airports { get; set; }
         public DbSet<City> Cities { get; set; }
-
-        //public void InitializeDatabase(TuiContext context)
-        //{
-        //    //what to do
-        //}
+        public DbSet<PlaneKind> PlaneKinds { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Plane> Planes { get; set; }
 
         public TuiContext() : base()
         {
@@ -28,12 +27,18 @@ namespace TUI.Data.Access.Source
             //Database.SetInitializer<TuiContext>(new CreateDatabaseIfNotExists<TuiContext>());
         }
 
+        public TuiContext(string connection) : base(connection)
+        {
+
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Airport>().HasOptional(c => c.City);
             modelBuilder.Entity<Flight>().Ignore(b => b.Arrival);
             modelBuilder.Entity<Flight>().Ignore(b => b.Departure);
+
+            modelBuilder.Entity<Plane>().HasRequired(c => c.GasKind);
 
             modelBuilder.Entity<Flight>()   
                 .HasRequired(c => c.DepartureAirport)
