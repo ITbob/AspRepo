@@ -11,9 +11,7 @@ namespace TUI.Project.Tests.Source.Scenarios
 {
     public partial class CityControllerFeatures: FeatureFixture
     {
-        private City _model;
-
-        private void an_empty_city_List()
+        private void An_empty_city_List()
         {
             using (var session = this._cityUnit.GetSession())
             {
@@ -28,7 +26,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             }
         }
 
-        private void add_element_from_create_page()
+        private void Add_element_from_create_page()
         {
             //Arrange
             this._model = CityFactory.GetCity(CityType.Paris);
@@ -37,7 +35,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             this._controller.Create(this._model);
         }
 
-        private void check_details_of_the_added_city()
+        private void Check_details_of_the_added_city()
         {
             //Arrange
 
@@ -53,7 +51,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             Assert.AreEqual("Details",result.ViewName);
         }
 
-        private void check_details_of_the_undefined_city()
+        private void Check_details_of_the_undefined_city()
         {
             //Arrange
 
@@ -66,7 +64,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             Assert.AreEqual("notification", routeResult.RouteValues["controller"].ToString().ToLower());
         }
 
-        private void check_list_page_has_two_cities()
+        private void Check_list_page_has_two_cities()
         {
             //Arrange
 
@@ -81,7 +79,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             Assert.AreEqual("Index", result.ViewName);
         }
 
-        private void delete_first_element()
+        private void Delete_first_element()
         {
             using (var session = this._cityUnit.GetSession())
             {
@@ -94,7 +92,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             }
         }
 
-        private void check_list_page_has_one_city()
+        private void Check_list_page_has_one_city()
         {
             //Arrange
 
@@ -109,7 +107,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             Assert.AreEqual("Index", result.ViewName);
         }
 
-        private void edit_added_element()
+        private void Edit_added_element()
         {
             //Arrange
 
@@ -118,7 +116,7 @@ namespace TUI.Project.Tests.Source.Scenarios
             this._controller.Edit(this._model);
         }
 
-        private void check_details_of_the_edited_city()
+        private void Check_details_of_the_edited_city()
         {
             //Arrange
 

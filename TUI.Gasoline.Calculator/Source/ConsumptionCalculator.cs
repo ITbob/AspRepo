@@ -12,11 +12,6 @@ namespace TUI.Gasoline.Calculator.Source
     {
         public static double GetAverageCoefficient(this ITransportationDeviceKind device, IGasKind gasKind)
         {
-            if (device is null)
-            {
-                throw new ArgumentNullException();
-            }
-
             return Math.Round(device.Weight*
                 device.EngineFactor* 
                 gasKind.GasConsumptionCoefficient* 
@@ -34,21 +29,11 @@ namespace TUI.Gasoline.Calculator.Source
 
         public static Double GetAverageConsumption(this ITransportationDeviceKind device, IGasKind gasKind, Double KmDistance)
         {
-            if(device is null)
-            {
-                throw new ArgumentNullException();
-            }
-
             return device.GetAverageCoefficient(gasKind) * KmDistance;
         }
 
         public static Double GetStartingConsumption(this ITransportationDeviceKind device, IGasKind gazKind)
         {
-            if (device is null)
-            {
-                throw new ArgumentNullException();
-            }
-
             return device.GetStartingCoefficient() * gazKind.GasConsumptionCoefficient;
         }
 

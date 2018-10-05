@@ -21,7 +21,7 @@ namespace TUI.Project.Tests.Source.Scenarios
         private String _connection;
         private IUnit<City> _cityUnit;
         private CitiesController _controller;
-
+        private City _model;
 
         [SetUp]
         public void SetUp()
@@ -43,9 +43,9 @@ namespace TUI.Project.Tests.Source.Scenarios
         public void Check_added_city_from_details_page()
         {
             Runner.RunScenario(
-                given => an_empty_city_List(),
-                and => add_element_from_create_page(),
-                then => check_details_of_the_added_city()
+                given => An_empty_city_List(),
+                and => Add_element_from_create_page(),
+                then => Check_details_of_the_added_city()
                 );
         }
 
@@ -55,8 +55,8 @@ namespace TUI.Project.Tests.Source.Scenarios
         public void Check_undefined_city_from_details_page()
         {
             Runner.RunScenario(
-                given => an_empty_city_List(),
-                then => check_details_of_the_undefined_city()
+                given => An_empty_city_List(),
+                then => Check_details_of_the_undefined_city()
                 );
         }
 
@@ -66,10 +66,10 @@ namespace TUI.Project.Tests.Source.Scenarios
         public void Add_two_cities_then_check_list_page()
         {
             Runner.RunScenario(
-                given => an_empty_city_List(),
-                and => add_element_from_create_page(),
-                and => add_element_from_create_page(),
-                then => check_list_page_has_two_cities()
+                given => An_empty_city_List(),
+                and => Add_element_from_create_page(),
+                and => Add_element_from_create_page(),
+                then => Check_list_page_has_two_cities()
                 );
         }
 
@@ -79,12 +79,12 @@ namespace TUI.Project.Tests.Source.Scenarios
         public void Add_two_cities_then_delete_one_city_then_check_list_page()
         {
             Runner.RunScenario(
-                given => an_empty_city_List(),
-                and => add_element_from_create_page(),
-                and => add_element_from_create_page(),
-                then => check_list_page_has_two_cities(),
-                and => delete_first_element(),
-                then => check_list_page_has_one_city()
+                given => An_empty_city_List(),
+                and => Add_element_from_create_page(),
+                and => Add_element_from_create_page(),
+                then => Check_list_page_has_two_cities(),
+                and => Delete_first_element(),
+                then => Check_list_page_has_one_city()
                 );
         }
 
@@ -94,10 +94,10 @@ namespace TUI.Project.Tests.Source.Scenarios
         public void Add_a_city_then_edit_it_then_check_change()
         {
             Runner.RunScenario(
-                given => an_empty_city_List(),
-                and => add_element_from_create_page(),
-                and => edit_added_element(),
-                then => check_details_of_the_edited_city()
+                given => An_empty_city_List(),
+                and => Add_element_from_create_page(),
+                and => Edit_added_element(),
+                then => Check_details_of_the_edited_city()
                 );
         }
     }

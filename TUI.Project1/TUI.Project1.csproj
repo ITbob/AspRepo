@@ -265,6 +265,7 @@
     <Content Include="Views\Airports\Details.cshtml" />
     <Content Include="Views\Airports\Edit.cshtml" />
     <Content Include="Views\Airports\Index.cshtml" />
+    <Content Include="Views\Shared\MenuWebsite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,18 +17,7 @@
             $('#'+'@ViewContext.Controller.ValueProvider.GetValue("controller").RawValue'+'Button').addClass("active");
         });
     </script>
-
-    <ul>
-        <li>
-            <a id="HomeButton" href="@Url.Action("index", "Home")">Home</a>
-        </li><li>
-            <a id="AiportsButton" href="@Url.Action("index", "Airports")">Airports</a>
-        </li><li>
-            <a id="CitiesButton" href="@Url.Action("index", "Cities")">Cities</a>
-        </li><li>
-            <a id="FlightsButton" href="@Url.Action("index", "Flights")">Flights</a>
-        </li>
-    </ul>
+    @RenderPage("~/Views/Shared/MenuWebsite.cshtml")
     <br>
     <div class="basicContainer">
         <div>

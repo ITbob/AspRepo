@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TUI.Distance.Calculator", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TUI.Distance.Calculator.Test", "TUI.Distance.Calculator.Test\TUI.Distance.Calculator.Test.csproj", "{BADB464E-3DD9-4B52-AAFE-7A850D3A2866}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TUI.Transportations.Air.Test", "TUI.Transportations.Air.Test\TUI.Transportations.Air.Test.csproj", "{BB235499-0AA3-4796-BCB4-580CAC1E42E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{BADB464E-3DD9-4B52-AAFE-7A850D3A2866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BADB464E-3DD9-4B52-AAFE-7A850D3A2866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BADB464E-3DD9-4B52-AAFE-7A850D3A2866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB235499-0AA3-4796-BCB4-580CAC1E42E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB235499-0AA3-4796-BCB4-580CAC1E42E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB235499-0AA3-4796-BCB4-580CAC1E42E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB235499-0AA3-4796-BCB4-580CAC1E42E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +136,7 @@ Global
 		{FCEAAB1E-1596-433F-B51F-2C029418D119} = {A4A11B42-1607-4881-A5F6-906A4F05F3DD}
 		{1A7BFE15-C4AB-4D43-A960-93610D67D8E3} = {4258BABF-AED5-4E47-872D-3E89C55E40DB}
 		{BADB464E-3DD9-4B52-AAFE-7A850D3A2866} = {4258BABF-AED5-4E47-872D-3E89C55E40DB}
+		{BB235499-0AA3-4796-BCB4-580CAC1E42E5} = {A4A11B42-1607-4881-A5F6-906A4F05F3DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F63553-CDF2-4BB7-AB7F-DC97529047D5}

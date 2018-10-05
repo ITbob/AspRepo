@@ -12,7 +12,7 @@ $(function () {
 
 
 function fetchAirport(inputId, datalistId) {
-    var info = document.getElementById(inputId).value;//'DepartureAirport' ,'ArrivalAirport'
+    var info = document.getElementById(inputId).value;
     $.ajax({
         url: UrlSettings.AirportsUrl,//'@Url.Action("GetAirports","HomeController")',
         type: 'POST',
@@ -20,21 +20,20 @@ function fetchAirport(inputId, datalistId) {
         dataType: 'json',
         data: '{value:"' + info + '"}',
         success: function (result) {
-            //alert(result.length + " " + $("#destination").length - 1);
-            if (result.length === $(datalistId).length) {//"#arrival"
+            if (result.length === $(datalistId).length) {
                 return;
             }
 
-            $(datalistId).empty();//"#arrival", '#departure'
+            $(datalistId).empty();
 
             $.each(result, function (i, item) {
                 var val = item.Name;
                 var text = val + " [" + item.City + ']';
-                $(datalistId).append($("<option>").attr('value', val).text(text));//"#arrival"
+                $(datalistId).append($("<option>").attr('value', val).text(text));
             });
         },
         error: function () {
-            alert('error');
+            alert('Sorry, an unexpected error happened.');
         }
     });
 }

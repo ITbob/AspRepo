@@ -73,7 +73,7 @@ namespace TUI.Transportations.Air
 
         }
 
-        //to put in a static extension method
+        //to put in a static extension method???
         public TimeSpan GetDuration()
         {
             var result = (double) ( (double)this.GetDistanceKm() 

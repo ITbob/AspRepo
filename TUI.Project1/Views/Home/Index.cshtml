@@ -13,11 +13,10 @@
     <link rel="stylesheet" type="text/css" href="~/Content/Customised/RespHomeStyle.css">
     <link rel="stylesheet" type="text/css" href="~/Content/Customised/SharedStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/css/bootstrap-combobox.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/js/bootstrap-combobox.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript" src="~/Scripts/Customized/HomeScript.js"></script>
+    <title>Index</title>
 </head>
 
 
@@ -31,12 +30,7 @@
             $('#'+'@ViewContext.Controller.ValueProvider.GetValue("controller").RawValue'+'Button').addClass("active");
         });
     </script>
-        <ul>
-            <li><a id="HomeButton" href="@Url.Action("index", "Home")">Home</a></li><li>
-            <a id="AiportsButton" href="@Url.Action("index", "Airports")">Airports</a></li><li>
-            <a id="CitiesButton" href="@Url.Action("index", "Cities")">Cities</a></li><li>
-            <a id="FlightsButton" href="@Url.Action("index", "Flights")">Flights</a></li>
-        </ul>
+        @RenderPage("~/Views/Shared/MenuWebsite.cshtml")
         <div id="header">
             <form class="form-horizontal" method="POST" action="@Url.Action("GetFlights", "Home")">
                 @Html.AntiForgeryToken()

@@ -9,13 +9,12 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/css/bootstrap-combobox.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/js/bootstrap-combobox.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript" src="~/Scripts/Customized/HomeScript.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/Customised/FlightsStyle.css">
     <link rel="stylesheet" type="text/css" href="~/Content/Customised/SharedStyle.css">
+    <title>Details</title>
 </head>
 
 
@@ -28,15 +27,10 @@
                 AirportsUrl : '@Url.Action("GetAirports", "Home")'
         }
     </script>
-    <ul>
-        <li><a id="HomeButton" href="@Url.Action("index", "Home")">Home</a></li>
-        <li><a id="AiportsButton" href="@Url.Action("index", "Airports")">Airports</a></li>
-        <li><a id="CitiesButton" href="@Url.Action("index", "Cities")">Cities</a></li>
-        <li><a id="FlightsButton" href="@Url.Action("index", "Flights")">Flights</a></li>
-    </ul>
+    @RenderPage("~/Views/Shared/MenuWebsite.cshtml")
     <div id="header">
         <form class="form-horizontal" method="POST" action="@Url.Action("GetFlights", "Home")">
-            <div class="parent">
+            <div class="centerBlock">
                 <div class="form-group row">
                     <label class="col-md-1 control-label">Departure</label>
                     <div class="col-md-2">
@@ -74,17 +68,23 @@
                 <div>
                     <div class="left-content">
                         <div class="top-content">@flight.DepartureAirport.City.Name</div><div class="middle-content">
-                        @flight.DepartureAirport.Name</div><div class="bottom-content">
-                        @flight.StartDate.ToString("HH:mm dd MMM yyyy")</div>
+                            @flight.DepartureAirport.Name
+                        </div><div class="bottom-content">
+                            @flight.StartDate.ToString("HH:mm dd MMM yyyy")
+                        </div>
                     </div><div class="center-content">
                         <div class="left-center-content">
-                            <img src="~/Content/Img/arrow.png" height="40" width="40"></div><div class="my-center-center-content">
-                            Flight: @String.Format("{0:0.00}", flight.GetDistanceKm()) km, @String.Format("{0:%h}H{0:%m}", flight.GetDuration())<br>Gaz: @flight.GetConsumption() L, @flight.GetPrice() E<br>@flight.Plane.Kind.Name</div><div class="right-center-content">
-                    <img src="~/Content/Img/arrow.png" height="40" width="40"></div>
+                            <img src="~/Content/Img/arrow.png" height="40" width="40">
+                        </div><div class="my-center-center-content">
+                            Flight: @String.Format("{0:0.00}", flight.GetDistanceKm()) km, @String.Format("{0:%h}H{0:%m}", flight.GetDuration())<br>Gaz: @flight.GetConsumption() L, @flight.GetPrice() E<br>@flight.Plane.Kind.Name
+                        </div><div class="right-center-content">
+                            <img src="~/Content/Img/arrow.png" height="40" width="40">
+                        </div>
                     </div>
                     <div class="right-content">
                         <div class="top-content">@flight.ArrivalAirport.City.Name</div><div class="middle-content">
-                        @flight.ArrivalAirport.Name</div><div class="bottom-content">
+                            @flight.ArrivalAirport.Name
+                        </div><div class="bottom-content">
                             @{
                                 var offset = TimeSpan.Zero;
                                 var isUtcPassed = flight.GetUtcDifference(ref offset);

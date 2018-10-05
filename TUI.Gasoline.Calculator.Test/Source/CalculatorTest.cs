@@ -47,7 +47,7 @@ namespace TUI.Gasoline.Calculator.Test.Source
             gazMock.Setup(p => p.GasConsumptionCoefficient).Returns(1);
             var gaz = gazMock.Object;
 
-            Assert.Throws<ArgumentNullException>(() => ConsumptionCalculator.GetAverageCoefficient(null, gaz));
+            Assert.Throws<NullReferenceException>(() => ConsumptionCalculator.GetAverageCoefficient(null, gaz));
         }
 
         //liter average
@@ -77,7 +77,7 @@ namespace TUI.Gasoline.Calculator.Test.Source
         [Test]
         public void Should_ThrowInvalidParametersException_When_Device_is_null_In_Average()
         {
-            Assert.Throws<ArgumentNullException>(() => ConsumptionCalculator.GetAverageConsumption(null,null, 1000));
+            Assert.Throws<NullReferenceException>(() => ConsumptionCalculator.GetAverageConsumption(null,null, 1000));
         }
 
         [TestCase(20, 10, 1,1,1, 200)]
@@ -129,7 +129,7 @@ namespace TUI.Gasoline.Calculator.Test.Source
         [Test]
         public void Should_ThrowInvalidParametersException_When_Device_is_null_In_Starting()
         {
-            Assert.Throws<ArgumentNullException>(() => ConsumptionCalculator.GetStartingConsumption(null,null));
+            Assert.Throws<NullReferenceException>(() => ConsumptionCalculator.GetStartingConsumption(null,null));
         }
 
         [TestCase(20,1,1,1,1,1,1,40)]

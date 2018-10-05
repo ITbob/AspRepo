@@ -15,8 +15,6 @@ namespace TUI.TimeZone.Source
 
         public static UtcMessage GetDiff(Location departure, Location arrival, DateTime utcDate)
         {
-            //be sure it's local kind
-            //utcDate = new DateTime(utcDate.Ticks, DateTimeKind.Local);
 
             var localDepature = DateTime.MinValue;
             if (!Api.GetLocalTime(departure, utcDate, ref localDepature))

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using TUI.Data.Access.Source.Unit;
@@ -19,7 +20,6 @@ namespace TUI.Project1.Controllers
             _airportUnit = airportUnit;
             _flightUnit = flightUnit;
         }
-
 
         private Boolean HasAirport(String airportName)
         {
@@ -52,8 +52,7 @@ namespace TUI.Project1.Controllers
                 var matchedAirport = airportRepo.Find(airport =>
                     airport.Name.ToLower().Contains(airportTextInfo.ToLower())
                     || (airport.City != null && airport.City.Name.ToLower().Contains(airportTextInfo.ToLower()))
-                    ).ToList().
-                        Select(x => // circular references that json cannot serialize
+                    ).Select(x => // circular references that json cannot serialize
                         new
                         {
                             Id = x.Id,
@@ -108,8 +107,8 @@ namespace TUI.Project1.Controllers
 
             using (var session = this._airportUnit.GetSession())
             {
-                departureAirport = session.GetRepository().Find((a) => a.Name == search.DepartureAirport).Single();
-                arrivalAirport = session.GetRepository().Find((a) => a.Name == search.ArrivalAirport).Single();
+                departureAirport = session.GetRepository().Find((a) => a.Name == search.DepartureAirport).First();
+                arrivalAirport = session.GetRepository().Find((a) => a.Name == search.ArrivalAirport).First();
             }
 
             using (var session = this._flightUnit.GetSession())
@@ -126,6 +125,11 @@ namespace TUI.Project1.Controllers
                 }
                 else
                 {
+                    foreach (var flight in flightRepo.GetAll())
+                    {
+                        Debug.WriteLine(flight.Description);
+                    }
+
                     ViewBag.flights = flightRepo.Find(flight => flight.DepartureAirport.Id == departureAirport.Id
                         && flight.ArrivalAirport.Id == arrivalAirport.Id);
                 }
