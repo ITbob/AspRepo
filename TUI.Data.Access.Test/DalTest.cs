@@ -11,6 +11,7 @@ using System.Configuration;
 using TUI.Gasoline.Source;
 using TUI.Data.Access.Source.Unit;
 using TUI.Places.Air.Source;
+using System.Data.Entity;
 
 namespace TUI.Data.Access.Test
 {
@@ -26,8 +27,9 @@ namespace TUI.Data.Access.Test
         [SetUp]
         public void Setup()
         {
+            Database.SetInitializer(new DropCreateDatabaseAlways<TuiContext>());
+
             var connection = ConfigurationManager.ConnectionStrings["TUITest"].ToString();
-            TuiDataHelper.CleanAll(connection);
 
             this._flightUnit = new TuiContextUnit<Flight>(connection, RepoFactory.GetTuiContextRepo<Flight>());
             this._airportUnit = new TuiContextUnit<Airport>(connection, RepoFactory.GetTuiContextRepo<Airport>());

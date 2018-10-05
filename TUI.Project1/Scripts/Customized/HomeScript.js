@@ -14,7 +14,7 @@ $(function () {
 function fetchAirport(inputId, datalistId) {
     var info = document.getElementById(inputId).value;
     $.ajax({
-        url: UrlSettings.AirportsUrl,//'@Url.Action("GetAirports","HomeController")',
+        url: UrlSettings.AirportsUrl,
         type: 'POST',
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
@@ -33,7 +33,7 @@ function fetchAirport(inputId, datalistId) {
             });
         },
         error: function () {
-            alert('Sorry, an unexpected error happened.');
+            console.log('GetAirport() got an error.');
         }
     });
 }

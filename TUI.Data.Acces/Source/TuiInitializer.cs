@@ -12,7 +12,7 @@ using TUI.Transportations.Air.Source;
 
 namespace TUI.Data.Access.Source
 {
-    internal class TuiInitializer:System.Data.Entity.DropCreateDatabaseIfModelChanges<TuiContext> 
+    public class TuiInitializer:System.Data.Entity.CreateDatabaseIfNotExists<TuiContext> 
     {
         //the database context object as an input parameter
         protected override void Seed(TuiContext context)

@@ -85,11 +85,6 @@ namespace TUI.Project.Tests.Source.Scenarios
 
         private object GetReflectedProperty(object obj, string propertyName)
         {
-            if (obj is null)
-            {
-                throw new ArgumentNullException(nameof(obj));
-            }
-
             PropertyInfo property = obj.GetType().GetProperty(propertyName);
 
             if (property == null)

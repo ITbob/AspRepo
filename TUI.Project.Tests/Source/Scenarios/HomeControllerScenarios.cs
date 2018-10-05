@@ -4,6 +4,7 @@ using LightBDD.NUnit2;
 using NUnit.Framework;
 using System;
 using System.Configuration;
+using System.Data.Entity;
 using TUI.Data.Access.Source;
 using TUI.Data.Access.Source.Factory;
 using TUI.Data.Access.Source.Unit;
@@ -28,7 +29,7 @@ namespace TUI.Project.Tests.Source.Scenarios
         {
             this._connection = ConfigurationManager.ConnectionStrings["TUITest"].ToString();
             AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
-            TuiDataHelper.CleanAll(this._connection);
+            Database.SetInitializer(new DropCreateDatabaseAlways<TuiContext>());
 
             this._cityUnit = new TuiContextUnit<City>(this._connection, RepoFactory.GetTuiContextRepo<City>());
             this._airportUnit = new TuiContextUnit<Airport>(this._connection, RepoFactory.GetTuiContextRepo<Airport>());
