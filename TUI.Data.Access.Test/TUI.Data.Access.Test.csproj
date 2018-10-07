@@ -65,7 +65,7 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TUI.Data.Acces\TUI.Data.Access.csproj">
+    <ProjectReference Include="..\TUI.Data.Access\TUI.Data.Access.csproj">
       <Project>{4FCEE010-1484-400F-8EED-AFC08FC669EC}</Project>
       <Name>TUI.Data.Access</Name>
     </ProjectReference>

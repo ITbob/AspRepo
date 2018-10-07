@@ -27,9 +27,9 @@ namespace TUI.Data.Access.Test
         [SetUp]
         public void Setup()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<TuiContext>());
-
             var connection = ConfigurationManager.ConnectionStrings["TUITest"].ToString();
+            var tui = new TuiContext(connection);
+            tui.Database.Delete();
 
             this._flightUnit = new TuiContextUnit<Flight>(connection, RepoFactory.GetTuiContextRepo<Flight>());
             this._airportUnit = new TuiContextUnit<Airport>(connection, RepoFactory.GetTuiContextRepo<Airport>());
