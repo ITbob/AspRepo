@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using TUI.Data.Access.Source;
 using TUI.Data.Access.Source.Unit;
+using TUI.Data.Access.Source.Unit.Tracker;
 using TUI.Login.source;
 using TUI.Places.Source;
 using TUI.Sandbox.Controllers;
@@ -9,6 +10,7 @@ using TUI.TimeZone.Source.Api.Google;
 using TUI.Transportations.Air;
 using TUI.Transportations.Air.Source;
 using Unity;
+using Unity.Injection;
 using Unity.Mvc5;
 
 namespace TUI.Sandbox
@@ -29,12 +31,12 @@ namespace TUI.Sandbox
             container.RegisterType<ReportController>();
 
             // Register interface
-            container.RegisterType<IUnit<Airport>, AirportUnit>();
-            container.RegisterType<IUnit<City>, CityUnit>();
-            container.RegisterType<IUnit<Flight>, FlightUnit>();
-            container.RegisterType<IUnit<Plane>, PlaneUnit>();
-            container.RegisterType<IUnit<Location>, LocationUnit>();
-            container.RegisterType<IUnit<User>, UserUnit>();
+            container.RegisterType<IUnit<Airport>, AirportTracker>();
+            container.RegisterType<IUnit<City>, CityTracker>();
+            container.RegisterType<IUnit<Flight>, FlightTracker>();
+            container.RegisterType<IUnit<Plane>, PlaneTracker>();
+            container.RegisterType<IUnit<Location>, LocationTracker>();
+            container.RegisterType<IUnit<User>, UserTracker>();
             container.RegisterType<IUnit<HistoryLine>, HistoryUnit>();
             container.RegisterType<ITimeZoneApi, GoogleTimeZoneApi>();
 

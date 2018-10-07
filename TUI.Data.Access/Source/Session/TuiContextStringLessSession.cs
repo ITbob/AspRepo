@@ -13,41 +13,27 @@ namespace TUI.Data.Access.Source.Session
     {
         private readonly TuiContextRepository<T> _repo;
         private TuiContext _context { get; set; }
-        private readonly HistoryLineRepository _historyRepo;
-        private readonly IList<HistoryLine> _history;
+        public EventHandler Completed { get; set; }
+        public EventHandler Disposed { get; set; }
 
-
-        public TuiContextStringLessSession(TuiContextRepository<T> repo
-            , Boolean listen = true)
+        public void OnDisposed()
         {
-            this._repo = repo;
-            if (listen)
-            {
-                this._repo.Operated += this.OnOperated;
-                this._history = new List<HistoryLine>();
-                this._historyRepo = new HistoryLineRepository();
-            }
+            this.Disposed?.Invoke(this, EventArgs.Empty);
+        }
+        private void OnCompleted()
+        {
+            this.Completed?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnOperated(Object obj, OperationType operation)
+        public TuiContextStringLessSession(TuiContextRepository<T> repo)
         {
-            this._history.Add(new HistoryLine()
-            {
-                Operation = operation,
-                Datetime = DateTime.Now,
-                DateType = typeof(T).Name
-            });
+            this._repo = repo;
         }
 
         public int Complete()
         {
             var saved = this._context.SaveChanges();
-
-            this._historyRepo.SetContext(this._context);
-            this._historyRepo.AddRange(this._history);
-            this._history.Clear();
-            this._context.SaveChanges();
-
+            this.OnCompleted();
             return saved;
         }
 
@@ -59,19 +45,22 @@ namespace TUI.Data.Access.Source.Session
         public void Dispose()
         {
             this.Disposing(true);
+            this.OnDisposed();
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Disposing(bool disposing)
         {
-            this._repo.Operated -= this.OnOperated;
             this._context.Dispose();
         }
 
         public IRepository<T> GetRepository()
         {
-            this._context = new TuiContext();
-            this._repo.SetContext(this._context);
+            if(this._context == null)
+            {
+                this._context = new TuiContext();
+                this._repo.SetContext(this._context);
+            }
             return this._repo;
         }
     }

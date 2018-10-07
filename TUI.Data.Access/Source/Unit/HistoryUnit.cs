@@ -12,7 +12,7 @@ namespace TUI.Data.Access.Source.Unit
     {
         public ISession<HistoryLine> GetSession()
         {
-            return new TuiContextStringLessSession<HistoryLine>(new HistoryLineRepository(),false);
+            return new TuiContextStringLessSession<HistoryLine>(new HistoryLineRepository());
         }
     }
 }

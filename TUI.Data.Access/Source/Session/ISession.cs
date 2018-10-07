@@ -12,5 +12,7 @@ namespace TUI.Data.Access.Source.Session
     {
         IRepository<T> GetRepository();
         Int32 Complete();
+        EventHandler Completed { get; set; }
+        EventHandler Disposed { get; set; }
     }
 }

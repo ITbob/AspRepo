@@ -16,7 +16,7 @@ namespace TUI.Data.Access.Source.Repositories
         protected abstract DbSet<T> GetDb();
         protected abstract IQueryable<T> GetQueryable();
 
-        internal EventHandler<OperationType> Operated;
+        public EventHandler<OperationType> Operated { get; set; }
 
         private void OnOperated(OperationType type)
         {

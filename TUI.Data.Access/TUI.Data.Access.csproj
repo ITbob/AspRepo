@@ -61,6 +61,7 @@
     <Compile Include="Source\Repositories\PlaneRepository.cs" />
     <Compile Include="Source\Repositories\UserRepository.cs" />
     <Compile Include="Source\Session\ISession.cs" />
+    <Compile Include="Source\Session\SessionTracker.cs" />
     <Compile Include="Source\Session\TuiContextSession.cs" />
     <Compile Include="Source\Session\TuiContextStringLessSession.cs" />
     <Compile Include="Source\Repositories\AirportRepository.cs" />
@@ -76,6 +77,13 @@
     <Compile Include="Source\Unit\IUnit.cs" />
     <Compile Include="Source\Unit\LocationUnit.cs" />
     <Compile Include="Source\Unit\PlaneUnit.cs" />
+    <Compile Include="Source\Unit\Tracker\AirportTracker.cs" />
+    <Compile Include="Source\Unit\Tracker\CityTracker.cs" />
+    <Compile Include="Source\Unit\Tracker\FlightTracker.cs" />
+    <Compile Include="Source\Unit\Tracker\LocationTracker.cs" />
+    <Compile Include="Source\Unit\Tracker\PlaneTracker.cs" />
+    <Compile Include="Source\Unit\Tracker\UnitTracker.cs" />
+    <Compile Include="Source\Unit\Tracker\UserTracker.cs" />
     <Compile Include="Source\Unit\TuiContextUnit.cs" />
     <Compile Include="Source\Unit\UserUnit.cs" />
   </ItemGroup>

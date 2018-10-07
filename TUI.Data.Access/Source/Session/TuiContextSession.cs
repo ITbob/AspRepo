@@ -15,6 +15,17 @@ namespace TUI.Data.Access.Source.Session
         private readonly String _connection;
         private readonly TuiContextRepository<T> _repo;
         private TuiContext _context { get; set; }
+        public EventHandler Completed { get; set; }
+        public EventHandler Disposed { get; set; }
+
+        public void OnDisposed()
+        {
+            this.Disposed?.Invoke(this, EventArgs.Empty);
+        }
+        private void OnCompleted()
+        {
+            this.Completed?.Invoke(this, EventArgs.Empty);
+        }
 
         public TuiContextSession(String connection, TuiContextRepository<T> repo)
         {
@@ -24,18 +35,36 @@ namespace TUI.Data.Access.Source.Session
 
         public int Complete()
         {
-            return this._context.SaveChanges();
+            var result = this._context.SaveChanges();
+            this.OnCompleted();
+            return result;
+        }
+
+        ~TuiContextSession()
+        {
+            Disposing(false);
         }
 
         public void Dispose()
+        {
+            this.Disposing(true);
+            this.OnDisposed();
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Disposing(bool disposing)
         {
             this._context.Dispose();
         }
 
         public IRepository<T> GetRepository()
         {
-            this._context = new TuiContext(this._connection);
-            this._repo.SetContext(this._context);
+            if(this._context == null)
+            {
+                this._context = new TuiContext(this._connection);
+                this._repo.SetContext(this._context);
+            }
+
             return this._repo;
         }
     }

@@ -21,5 +21,6 @@ namespace TUI.Data.Access.Source.Repositories
         void RemoveRange(IEnumerable<T> element);
 
         void SetModified(T element);
+        EventHandler<OperationType> Operated { get; set; }
     }
 }
