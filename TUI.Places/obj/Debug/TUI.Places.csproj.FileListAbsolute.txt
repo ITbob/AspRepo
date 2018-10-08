@@ -23,3 +23,6 @@ C:\Users\Freddy\source\repos\TUI.Project\TUI.Places\bin\Debug\EntityFramework.xm
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Places\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Places\obj\Debug\TUI.Places.dll
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Places\obj\Debug\TUI.Places.pdb
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Places\obj\Debug\TUI.Places.csprojResolveAssemblyReference.cache
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Places\obj\Debug\TUI.Places.csproj.CoreCompileInputs.cache
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Places\obj\Debug\TUI.Places.csproj.CopyComplete

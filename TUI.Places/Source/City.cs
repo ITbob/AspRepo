@@ -21,5 +21,47 @@ namespace TUI.Places.Source
         public Int32 LocationId { get; set; }
         [Display(Name = "Description")]
         public virtual Location Location { get; set; }
+
+        [NotMapped]
+        public Double Longitude
+        {
+            get
+            {
+                if (this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                return this.Location.Longitude;
+            }
+            set
+            {
+                if (this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                this.Location.Longitude = value;
+            }
+        }
+
+        [NotMapped]
+        public Double Latitude
+        {
+            get
+            {
+                if (this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                return this.Location.Latitude;
+            }
+            set
+            {
+                if (this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                this.Location.Latitude = value;
+            }
+        }
     }
 }

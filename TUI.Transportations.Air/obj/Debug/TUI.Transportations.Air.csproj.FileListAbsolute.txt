@@ -60,3 +60,9 @@ C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\bin\Debug\RestS
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\obj\Debug\TUI.Transportations.Air.csprojResolveAssemblyReference.cache
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\obj\Debug\TUI.Transportations.Air.dll
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\obj\Debug\TUI.Transportations.Air.pdb
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\bin\Debug\TUI.Gasoline.dll.config
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\bin\Debug\TUI.Places.Air.dll.config
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\bin\Debug\TUI.Places.dll.config
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\bin\Debug\TUI.Transportations.dll.config
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\obj\Debug\TUI.Transportations.Air.csproj.CoreCompileInputs.cache
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations.Air\obj\Debug\TUI.Transportations.Air.csproj.CopyComplete

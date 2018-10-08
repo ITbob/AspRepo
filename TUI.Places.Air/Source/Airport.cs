@@ -24,6 +24,48 @@ namespace TUI.Places.Source
         public Int32? CityId { get; set; }
         public virtual City City { get; set; }
 
+        [NotMapped]
+        public Double Longitude
+        {
+            get
+            {
+                if (this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                return this.Location.Longitude;
+            }
+            set
+            {
+                if(this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                this.Location.Longitude = value;
+            }
+        }
+
+        [NotMapped]
+        public Double Latitude
+        {
+            get
+            {
+                if (this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                return this.Location.Latitude;
+            }
+            set
+            {
+                if (this.Location == null)
+                {
+                    this.Location = new Location();
+                }
+                this.Location.Latitude = value;
+            }
+        }
+
         public String Description => this.ToString();
 
         public Airport()

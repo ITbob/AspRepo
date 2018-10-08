@@ -18,7 +18,7 @@ namespace TUI.Data.Access.Source.Repositories
 
         public EventHandler<OperationType> Operated { get; set; }
 
-        private void OnOperated(OperationType type)
+        protected void OnOperated(OperationType type)
         {
             this.Operated?.Invoke(this, type);
         }
@@ -78,7 +78,7 @@ namespace TUI.Data.Access.Source.Repositories
             this.OnOperated(OperationType.Remove);
         }
 
-        public void SetModified(T element)
+        public virtual void SetModified(T element)
         {
             this.Context.Entry(element).State = EntityState.Modified;
             this.OnOperated(OperationType.Update);

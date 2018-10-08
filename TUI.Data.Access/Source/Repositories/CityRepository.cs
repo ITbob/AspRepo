@@ -22,6 +22,17 @@ namespace TUI.Data.Access.Source.Repositories
             return this.Context.Cities.Include(c => c.Location);
         }
 
+        public override void SetModified(City element)
+        {
+            var originalCity = this.Context.Cities.Include(c => c.Location)
+                .Single(c => c.Id == element.Id);
+            this.Context.Locations.Attach(element.Location);
 
+            originalCity.Location.Latitude = element.Location.Latitude;
+            originalCity.Location.Longitude = element.Location.Longitude;
+            this.Context.Entry(originalCity).State = EntityState.Modified;
+
+            this.OnOperated(OperationType.Update);
+        }
     }
 }

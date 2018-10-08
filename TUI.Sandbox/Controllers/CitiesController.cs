@@ -28,7 +28,7 @@ namespace TUI.Sandbox.Controllers
         // https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public override ActionResult Create([Bind(Include = "Id, Name, LocationId")] City item)
+        public override ActionResult Create([Bind(Include = "Id, Name, Latitude,Longitude")] City item)
         {
             return base.Create(item);
         }
@@ -38,7 +38,7 @@ namespace TUI.Sandbox.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public override ActionResult Edit([Bind(Include = "Id, Name, LocationId")] City item)
+        public override ActionResult Edit([Bind(Include = "Id, Name, Latitude,Longitude")] City item)
         {
             return base.Edit(item);
         }

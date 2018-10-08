@@ -13,11 +13,13 @@ namespace TUI.Places.Source
         [Key]
         public Int32 Id { get; set; }
         [Required]
+        [Range(-90,90)]
         public Double Latitude { get; set; }
         [Required]
+        [Range(-180, 180)]
         public Double Longitude { get; set; }
 
-        public String Description => this.ToString();
+        public virtual String Description => this.ToString();
 
         public override string ToString()
         {
