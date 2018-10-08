@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TUI.Data.Access.Source.Repositories;
+using TUI.Login.source;
 using TUI.Model.Shared.Source;
 using TUI.Places.Source;
 using TUI.Transportations.Air;
@@ -22,6 +23,7 @@ namespace TUI.Data.Access.Source.Factory
                 { typeof(Plane), () => new PlaneRepository()},
                 { typeof(Airport), () => new AirportRepository()},
                 { typeof(HistoryLine), () => new HistoryLineRepository()},
+                { typeof(User), () => new UserRepository()},
             };
 
         public static TuiContextRepository<T> GetTuiContextRepo<T>()

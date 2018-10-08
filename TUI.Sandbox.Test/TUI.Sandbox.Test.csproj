@@ -115,6 +115,10 @@
       <Project>{27162197-8457-49B6-AE21-DC96AE4643A8}</Project>
       <Name>TUI.Gasoline</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TUI.Login\TUI.Login.csproj">
+      <Project>{8F41020A-E4A2-459D-B3BA-049D707A0C4C}</Project>
+      <Name>TUI.Login</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TUI.Model.Shared\TUI.Model.Shared.csproj">
       <Project>{FCEAAB1E-1596-433F-B51F-2C029418D119}</Project>
       <Name>TUI.Model.Shared</Name>

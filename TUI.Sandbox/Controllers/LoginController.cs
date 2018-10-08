@@ -10,7 +10,7 @@ using TUI.Sandbox.Models;
 
 namespace TUI.Sandbox.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BasicController
     {
         private readonly IUnit<User> _loginUnit;
 
@@ -23,19 +23,19 @@ namespace TUI.Sandbox.Controllers
         public ActionResult Index()
         {
             UserViewModel viewModel = new UserViewModel
-            { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            {
+                Authentifie = HttpContext.User.Identity.IsAuthenticated
+            };
 
             using(var session = _loginUnit.GetSession())
             {
                 var repo = session.GetRepository();
 
                 int id = 0;
-                if (int.TryParse(HttpContext.User.Identity.Name, out id))
+                if (int.TryParse(HttpContext.User.Identity.Name, out id)
+                    && HttpContext.User.Identity.IsAuthenticated)
                 {
-                    if (HttpContext.User.Identity.IsAuthenticated)
-                    {
-                        viewModel.User = repo.Find(u => u.Id == id).Single();
-                    }
+                    viewModel.User = repo.Find(u => u.Id == id).Single();
                 }
 
                 return View(viewModel);
@@ -43,6 +43,7 @@ namespace TUI.Sandbox.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(UserViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -81,6 +82,7 @@ namespace TUI.Sandbox.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
