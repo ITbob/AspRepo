@@ -12,6 +12,7 @@ using TUI.Gasoline.Source;
 using TUI.Data.Access.Source.Unit;
 using TUI.Places.Air.Source;
 using System.Data.Entity;
+using TUI.Data.Access.Source.Unit.Tracker;
 
 namespace TUI.Data.Access.Test
 {
@@ -22,21 +23,25 @@ namespace TUI.Data.Access.Test
         private IUnit<Flight> _flightUnit;
         private IUnit<Airport> _airportUnit;
         private IUnit<City> _cityUnit;
-
+        private IUnit<City> _cityUniTracker;
+        private IUnit<HistoryLine> _historyLineUnit;
+        private String _connection;
 
         [SetUp]
         public void Setup()
         {
-            var connection = ConfigurationManager.ConnectionStrings["TUITest"].ToString();
-            var tui = new TuiContext(connection);
+            this._connection = ConfigurationManager.ConnectionStrings["TUITest"].ToString();
+            var tui = new TuiContext(this._connection);
             tui.Database.Delete();
 
-            this._flightUnit = new TuiContextUnit<Flight>(connection, RepoFactory.GetTuiContextRepo<Flight>());
-            this._airportUnit = new TuiContextUnit<Airport>(connection, RepoFactory.GetTuiContextRepo<Airport>());
-            this._cityUnit = new TuiContextUnit<City>(connection, RepoFactory.GetTuiContextRepo<City>());
+            this._flightUnit = new TuiContextUnit<Flight>(this._connection, RepoFactory.GetTuiContextRepo<Flight>());
+            this._airportUnit = new TuiContextUnit<Airport>(this._connection, RepoFactory.GetTuiContextRepo<Airport>());
+            this._cityUnit = new TuiContextUnit<City>(this._connection, RepoFactory.GetTuiContextRepo<City>());
+            this._cityUniTracker = new UnitTracker<City>(this._cityUnit, this._connection);
+            this._historyLineUnit = new TuiContextUnit<HistoryLine>(this._connection, RepoFactory.GetTuiContextRepo<HistoryLine>());
         }
 
-        [Test, Order(1)]
+        [Test]
         public void Should_Flight_list_be_empty()
         {
             using (var session = this._flightUnit.GetSession())
@@ -46,7 +51,7 @@ namespace TUI.Data.Access.Test
             }
         }
 
-        [Test, Order(2)]
+        [Test]
         public void Should_Get_Two_Cities()
         {
             using (var session = this._cityUnit.GetSession())
@@ -64,7 +69,7 @@ namespace TUI.Data.Access.Test
             }
         }
 
-        [Test,Order(2)]
+        [Test]
         public void Should_Get_Three_More_Flights()
         {
             using (var flightSession = this._flightUnit.GetSession())
@@ -125,6 +130,40 @@ namespace TUI.Data.Access.Test
                     }
                 }
             }
+        }
+
+        [Test]
+        public void Should_Get_One_Recorded_city_in_report_history_when_add_city_from_tracking_unit()
+        {
+            using(var session = this._cityUniTracker.GetSession())
+            {
+                var repo = session.GetRepository();
+                repo.Add(CityFactory.GetCity(CityType.Melbourne));
+                session.Complete();
+            }
+
+            using (var session = this._historyLineUnit.GetSession())
+            {
+                var historyLineRepo = session.GetRepository();
+                var historyLines = historyLineRepo.GetAll();
+
+                Assert.AreEqual(1, historyLines.Count());
+                Assert.AreEqual(typeof(City).Name, historyLines.First().DateType);
+                Assert.AreEqual(OperationType.Create, historyLines.First().Operation);
+            }
+        }
+
+        [Test]
+        public void Should_initialise_correctly()
+        {
+            Database.SetInitializer<TuiContext>(new TuiInitializer());
+            var tui = new TuiContext(this._connection);
+            tui.Database.Initialize(false);
+
+            Assert.AreEqual(10, tui.Cities.Count());
+            Assert.AreEqual(13, tui.Airports.Count());
+            Assert.AreEqual(4, tui.Flights.Count());
+            Assert.AreEqual(1, tui.Users.Count());
         }
     }
 }

@@ -30,31 +30,28 @@
     @RenderPage("~/Views/Shared/MenuWebsite.cshtml")
     <div id="header">
         <form class="form-horizontal" method="POST" action="@Url.Action("GetFlights", "Home")">
-            <div class="centerBlock">
-                <div class="form-group row">
-                    <label class="col-md-1 control-label">Departure</label>
-                    <div class="col-md-2">
-                        <input value="@ViewBag.previousResearch.DepartureAirport"
-                               list="departure" type="text" class="form-control" name="departureName" id="departureName" required />
-                        <datalist id="departure"></datalist>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="date" name="beginningDate" value="@ViewBag.previousResearch.BeginningDate" class="form-control">
-                    </div>
+            @Html.AntiForgeryToken()
+            <div class="form-group row">
+                <label class="col-md-1 control-label">Departure</label>
+                <div class="col-md-2">
+                    <input list="departure" type="text" value="@ViewBag.previousResearch.DepartureAirport" class="form-control" name="DepartureAirport" id="DepartureAirport" required />
+                    <datalist id="departure"></datalist>
+                </div>
+                <div class="col-md-2">
+                    <input type="date" name="beginningDate" value="@ViewBag.previousResearch.BeginningDate" class="form-control">
+                </div>
 
-                    <label class="col-md-1 control-label">Destination</label>
+                <label class="col-md-1 control-label">Destination</label>
 
-                    <div class="col-md-2">
-                        <input value="@ViewBag.previousResearch.ArrivalAirport"
-                               list="arrival" type="text" class="form-control" name="arrivalName" id="arrivalName" required />
-                        <datalist id="arrival"></datalist>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="date" name="endingDate" value="@ViewBag.previousResearch.EndingDate" class="form-control">
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" value="Search" class="btn btn-primary">
-                    </div>
+                <div class="col-md-2">
+                    <input list="arrival" type="text" value="@ViewBag.previousResearch.ArrivalAirport" class="form-control" name="ArrivalAirport" id="ArrivalAirport" required />
+                    <datalist id="arrival"></datalist>
+                </div>
+                <div class="col-md-2">
+                    <input type="date" name="endingDate" value="@ViewBag.previousResearch.EndingDate"  class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" value="Search" class="btn btn-primary">
                 </div>
             </div>
         </form>

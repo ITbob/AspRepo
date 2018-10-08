@@ -21,6 +21,7 @@ namespace TUI.Data.Access.Source.Factory
                 { typeof(City), () => new CityRepository()},
                 { typeof(Plane), () => new PlaneRepository()},
                 { typeof(Airport), () => new AirportRepository()},
+                { typeof(HistoryLine), () => new HistoryLineRepository()},
             };
 
         public static TuiContextRepository<T> GetTuiContextRepo<T>()

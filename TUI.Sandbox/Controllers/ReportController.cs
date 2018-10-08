@@ -8,7 +8,7 @@ using TUI.Data.Access.Source.Unit;
 
 namespace TUI.Sandbox.Controllers
 {
-    public class ReportController : Controller
+    public class ReportController : BasicController
     {
         private readonly IUnit<HistoryLine> _historyUnit;
 

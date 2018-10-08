@@ -17,8 +17,6 @@ namespace TUI.Data.Access.Source
         //the database context object as an input parameter
         protected override void Seed(TuiContext context)
         {
-            Debug.WriteLine("initializing");
-
             var cities = new List<City>();
             cities.AddRange(new[]
             {

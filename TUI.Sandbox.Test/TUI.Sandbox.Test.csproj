@@ -93,6 +93,7 @@
     <Compile Include="Source\FlightsControllerTest.cs" />
     <Compile Include="Source\HomeControllerTest.cs" />
     <Compile Include="Source\NotificationControllerTest.cs" />
+    <Compile Include="Source\ReportControllerTest.cs" />
     <Compile Include="Source\Scenarios\CityControllerFeatures.cs" />
     <Compile Include="Source\Scenarios\CityControllerScenarios.cs" />
     <Compile Include="Source\Scenarios\HomeControllerFeatures.cs" />

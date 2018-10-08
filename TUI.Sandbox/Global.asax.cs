@@ -26,7 +26,8 @@ namespace TUI.Sandbox
         }
 
 
-        private static void SetCache(String cachePath)
+        //burk stong coupling with entity framework
+        private static void SetCache(String cachePath) 
         {
             using (var ctx = new TuiContext())
             {

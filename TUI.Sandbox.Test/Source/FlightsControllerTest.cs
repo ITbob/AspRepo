@@ -26,7 +26,6 @@ namespace TUI.Sandbox.Test.Source
         [SetUp]
         public void Setup()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<TuiContext>());
 
             AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
             var connection = ConfigurationManager.ConnectionStrings["TUITest"].ToString();

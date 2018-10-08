@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TUI.Data.Access.Source.Factory;
 using TUI.Data.Access.Source.Repositories;
 using TUI.Data.Access.Source.Unit;
 using TUI.Model.Shared.Source;
@@ -12,17 +13,26 @@ namespace TUI.Data.Access.Source.Session
     internal class SessionTracker<T>
                 where T : class, IIdContainer
     {
-        private readonly HistoryUnit _historyUnit;
+        private readonly IUnit<HistoryLine> _historyUnit;
         private readonly IList<HistoryLine> _history;
         private readonly IRepository<T> _repo;
         private readonly ISession<T> _session;
 
-        public SessionTracker(ISession<T> session)
+        public SessionTracker(ISession<T> session, String connectionString = null)
         {
             this._session = session;
             this._repo = session.GetRepository();
             this._history = new List<HistoryLine>();
-            this._historyUnit = new HistoryUnit();
+            //ouch ugly
+            if(connectionString != null)
+            {
+                this._historyUnit = new TuiContextUnit<HistoryLine>(connectionString, 
+                    RepoFactory.GetTuiContextRepo<HistoryLine>());
+            }
+            else
+            {
+                this._historyUnit = new HistoryUnit();
+            }
 
             this._repo.Operated += this.OnOperated;
             this._session.Completed += this.OnCompleted;

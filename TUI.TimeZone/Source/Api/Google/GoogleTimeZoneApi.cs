@@ -29,7 +29,8 @@ namespace TUI.TimeZone.Source.Api.Google
         private GoogleTimeZone GetTimeZone(Location loc, DateTime utcDate)
         {
             this._request = new RestRequest("maps/api/timezone/json", Method.GET);
-            this._request.AddParameter("location", loc.Latitude + "," + loc.Longitude);
+            this._request.AddParameter("location", loc.Latitude.ToString().Replace(",",".") 
+                + "," + loc.Longitude.ToString().Replace(",", "."));
             this._request.AddParameter("timestamp", ToTimestamp(utcDate));
             this._request.AddParameter("sensor", "false");
             var response = this._client.Execute<GoogleTimeZone>(this._request);
@@ -40,7 +41,7 @@ namespace TUI.TimeZone.Source.Api.Google
         {
             Thread.Sleep(1000); //add a sleep otherwise google thinks we are spamming
             var data = GetTimeZone(departure, utcDate);
-            if (data == null)
+            if (data == null || data.Status != "OK")
             {
                 return false;
             }

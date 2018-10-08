@@ -64,7 +64,6 @@ namespace TUI.TimeZone.Test.Source
         }
 
         delegate void LocalTimeCallBack(Location location, DateTime datetime, ref DateTime amount);
-        //delegate Boolean LocalTimeReturn(Location location, DateTime datetime, ref DateTime amount);
 
         [Test]
         public void Should_Be_3Hours_and_30minutes_between_Paris_and_Calcutta_When_Using_Mock()
@@ -79,7 +78,7 @@ namespace TUI.TimeZone.Test.Source
                 .Callback(new LocalTimeCallBack(
                     (Location val, DateTime dd, ref DateTime rr) =>
                     {
-                        rr = Convert.ToDateTime("9/27/2018 6:50:00 PM");
+                        rr = new DateTime(2018, 9, 27, 18, 50,0);
                     }
                 )).Returns(true);
 
@@ -90,7 +89,7 @@ namespace TUI.TimeZone.Test.Source
                 .Callback(new LocalTimeCallBack(
                     (Location val, DateTime dd, ref DateTime rr) =>
                     {
-                        rr = Convert.ToDateTime("9/27/2018 3:20:00 PM");
+                        rr = new DateTime(2018, 9, 27, 15, 20, 0);
                     }
                 )).Returns(true);
 
