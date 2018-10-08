@@ -9,7 +9,7 @@ namespace TUI.Data.Access.Source.Unit.Tracker
 {
     public class LocationTracker:UnitTracker<Location>
     {
-        public LocationTracker() : base(new LocationUnit())
+        public LocationTracker() : base(new LocationUnit(), new HistoryUnit())
         {
 
         }

@@ -9,7 +9,7 @@ namespace TUI.Data.Access.Source.Unit.Tracker
 {
     public class UserTracker : UnitTracker<User>
     {
-        public UserTracker() : base(new UserUnit())
+        public UserTracker() : base(new UserUnit(), new HistoryUnit())
         {
 
         }

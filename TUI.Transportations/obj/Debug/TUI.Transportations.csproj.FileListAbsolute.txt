@@ -26,6 +26,5 @@ C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\bin\Debug\TUI.Place
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\bin\Debug\EntityFramework.xml
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\bin\Debug\TUI.Model.Shared.pdb
-C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.csprojResolveAssemblyReference.cache
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.dll
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.pdb

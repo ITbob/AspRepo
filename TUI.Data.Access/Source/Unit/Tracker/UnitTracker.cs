@@ -7,12 +7,12 @@ namespace TUI.Data.Access.Source.Unit.Tracker
         where T : class, IIdContainer
     {
         private readonly IUnit<T> _unit;
-        private readonly string _connectionString = null;
+        private readonly IUnit<HistoryLine> _recordingUnit;
 
-        public UnitTracker(IUnit<T> unit, string connectionString = null)
+        public UnitTracker(IUnit<T> observedUnit, IUnit<HistoryLine> recordingUnit)
         {
-            this._unit = unit;
-            this._connectionString = connectionString;
+            this._unit = observedUnit;
+            this._recordingUnit = recordingUnit;
         }
 
         public ISession<T> GetSession()
@@ -21,7 +21,7 @@ namespace TUI.Data.Access.Source.Unit.Tracker
             //create a tracker for each session, when the session is done
             // the tracker will unsubscribe its event
             // then be collected by GC
-            var tracker = new SessionTracker<T>(session, this._connectionString);
+            var tracker = new SessionTracker<T>(session, this._recordingUnit);
             return session;
         }
     }

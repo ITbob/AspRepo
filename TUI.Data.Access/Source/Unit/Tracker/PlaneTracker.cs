@@ -9,7 +9,7 @@ namespace TUI.Data.Access.Source.Unit.Tracker
 {
     public class PlaneTracker: UnitTracker<Plane>
     {
-        public PlaneTracker() : base(new PlaneUnit())
+        public PlaneTracker() : base(new PlaneUnit(), new HistoryUnit())
         {
 
         }

@@ -37,8 +37,8 @@ namespace TUI.Data.Access.Test
             this._flightUnit = new TuiContextUnit<Flight>(this._connection, RepoFactory.GetTuiContextRepo<Flight>());
             this._airportUnit = new TuiContextUnit<Airport>(this._connection, RepoFactory.GetTuiContextRepo<Airport>());
             this._cityUnit = new TuiContextUnit<City>(this._connection, RepoFactory.GetTuiContextRepo<City>());
-            this._cityUniTracker = new UnitTracker<City>(this._cityUnit, this._connection);
             this._historyLineUnit = new TuiContextUnit<HistoryLine>(this._connection, RepoFactory.GetTuiContextRepo<HistoryLine>());
+            this._cityUniTracker = new UnitTracker<City>(this._cityUnit, this._historyLineUnit);
         }
 
         [Test]

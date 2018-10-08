@@ -9,7 +9,7 @@ namespace TUI.Data.Access.Source.Unit.Tracker
 {
     public class CityTracker : UnitTracker<City>
     {
-        public CityTracker() : base(new CityUnit())
+        public CityTracker() : base(new CityUnit(), new HistoryUnit())
         {
 
         }

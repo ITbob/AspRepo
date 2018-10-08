@@ -13,26 +13,17 @@ namespace TUI.Data.Access.Source.Session
     internal class SessionTracker<T>
                 where T : class, IIdContainer
     {
-        private readonly IUnit<HistoryLine> _historyUnit;
-        private readonly IList<HistoryLine> _history;
+        private readonly IUnit<HistoryLine> _recordingUnit;
+        private readonly IList<HistoryLine> _lastRecords;
         private readonly IRepository<T> _repo;
         private readonly ISession<T> _session;
 
-        public SessionTracker(ISession<T> session, String connectionString = null)
+        public SessionTracker(ISession<T> session, IUnit<HistoryLine> recordingUnit)
         {
             this._session = session;
             this._repo = session.GetRepository();
-            this._history = new List<HistoryLine>();
-            //ouch ugly
-            if(connectionString != null)
-            {
-                this._historyUnit = new TuiContextUnit<HistoryLine>(connectionString, 
-                    RepoFactory.GetTuiContextRepo<HistoryLine>());
-            }
-            else
-            {
-                this._historyUnit = new HistoryUnit();
-            }
+            this._lastRecords = new List<HistoryLine>();
+            this._recordingUnit = recordingUnit;
 
             this._repo.Operated += this.OnOperated;
             this._session.Completed += this.OnCompleted;
@@ -49,17 +40,17 @@ namespace TUI.Data.Access.Source.Session
 
         private void OnCompleted(Object obj, EventArgs e)
         {
-            using(var session = this._historyUnit.GetSession())
+            using(var session = this._recordingUnit.GetSession())
             {
-                session.GetRepository().AddRange(this._history);
-                this._history.Clear();
+                session.GetRepository().AddRange(this._lastRecords);
+                this._lastRecords.Clear();
                 session.Complete();
             }
         }
 
         private void OnOperated(Object obj, OperationType operation)
         {
-            this._history.Add(new HistoryLine()
+            this._lastRecords.Add(new HistoryLine()
             {
                 Operation = operation,
                 Datetime = DateTime.Now,

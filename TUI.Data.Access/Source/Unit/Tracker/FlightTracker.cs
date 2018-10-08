@@ -9,7 +9,7 @@ namespace TUI.Data.Access.Source.Unit.Tracker
 {
     public class FlightTracker : UnitTracker<Flight>
     {
-        public FlightTracker() : base(new FlightUnit())
+        public FlightTracker() : base(new FlightUnit(), new HistoryUnit())
         {
 
         }
