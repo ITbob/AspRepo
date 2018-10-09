@@ -51,7 +51,10 @@ namespace TUI.Data.Access.Source.Session
 
         protected virtual void Disposing(bool disposing)
         {
-            this._context.Dispose();
+            if (disposing)
+            {
+                this._context.Dispose();
+            }
         }
 
         public IRepository<T> GetRepository()

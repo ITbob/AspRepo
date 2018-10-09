@@ -21,7 +21,7 @@ namespace TUI.Sandbox.Test.Source
     {
         private CitiesController _controller;
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void Setup()
         {
             AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory));

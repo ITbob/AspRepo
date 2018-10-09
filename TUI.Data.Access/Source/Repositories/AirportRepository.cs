@@ -26,11 +26,16 @@ namespace TUI.Data.Access.Source.Repositories
         {
             var originalAirport = this.Context.Airports.Include(c => c.Location)
                 .Single(c => c.Id == element.Id);
-            this.Context.Locations.Attach(element.Location);
 
-            originalAirport.Location.Latitude = element.Location.Latitude;
-            originalAirport.Location.Longitude = element.Location.Longitude;
+            //no other idea
+            element.LocationId = originalAirport.LocationId;
+            element.Location.Id = originalAirport.Location.Id;
+
+            this.Context.Entry(originalAirport).CurrentValues.SetValues(element);
+            this.Context.Entry(originalAirport.Location).CurrentValues.SetValues(element.Location);
+
             this.Context.Entry(originalAirport).State = EntityState.Modified;
+            this.Context.Entry(originalAirport.Location).State = EntityState.Modified;
 
             this.OnOperated(OperationType.Update);
         }

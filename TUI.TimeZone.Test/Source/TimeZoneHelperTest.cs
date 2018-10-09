@@ -18,7 +18,7 @@ namespace TUI.TimeZone.Test.Source
         private Location _calcutta;
         private Location _paris;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             this._refDate = new DateTime(2018, 09, 27, 13, 20, 0);

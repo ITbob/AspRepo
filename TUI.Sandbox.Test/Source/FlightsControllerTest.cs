@@ -23,7 +23,7 @@ namespace TUI.Sandbox.Test.Source
     {
         private FlightsController _controller;
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void Setup()
         {
 

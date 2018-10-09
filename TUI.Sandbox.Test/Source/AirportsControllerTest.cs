@@ -16,7 +16,7 @@ namespace TUI.Sandbox.Test.Source
     class AirportsControllerTest
     {
         private AirportsController _controller;
-        [SetUp]
+        [TestFixtureSetUp]
         public void Setup()
         {
             AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
