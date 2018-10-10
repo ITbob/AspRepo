@@ -32,7 +32,7 @@ namespace TUI.TimeZone.Source.Api.Google
                 + "," + loc.Longitude.ToString().Replace(",", "."));
             request.AddParameter("timestamp", ToTimestamp(utcDate));
             request.AddParameter("sensor", "false");
-            request.AddParameter("key", "AIzaSyDsxDimKTCdU12yRTz0swC-8eIuUuHHkqg");
+            //uselese: request.AddParameter("key", "AIzaSyDsxDimKTCdU12yRTz0swC-8eIuUuHHkqg");
             var response = this._client.Execute<GoogleTimeZone>(request);
             return response.Data;
         }
