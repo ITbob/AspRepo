@@ -28,7 +28,4 @@ C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\bin\Debug\EntityFra
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\bin\Debug\TUI.Model.Shared.pdb
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.dll
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.pdb
-C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\bin\Debug\TUI.Places.dll.config
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.csprojResolveAssemblyReference.cache
-C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.csproj.CoreCompileInputs.cache
-C:\Users\Freddy\source\repos\TUI.Project\TUI.Transportations\obj\Debug\TUI.Transportations.csproj.CopyComplete
