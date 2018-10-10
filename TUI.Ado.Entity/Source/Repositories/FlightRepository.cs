@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TUI.Places.Source;
 using TUI.Transportations.Air;
 
 namespace TUI.Ado.Entity.Source.Repositories
@@ -44,12 +45,15 @@ namespace TUI.Ado.Entity.Source.Repositories
 
         private void SetForeignField(Flight element)
         {
-            var arrival = this.Context.Airports.Include(c => c.Location)
-                .Single(a => a.Id == element.ArrivalId);
-            var departure = this.Context.Airports.Include(c => c.Location)
-                .Single(a => a.Id == element.DepartureId);
-            element.ArrivalAirport = arrival;
-            element.DepartureAirport = departure;
+            if (this.Context.Airports.Include(c => c.Location).Any(a => a.Id == element.ArrivalId))
+            {
+                element.ArrivalAirport = this.Context.Airports.Include(c => c.Location).Single(a => a.Id == element.ArrivalId);
+            }
+
+            if (this.Context.Airports.Include(c => c.Location).Any(a => a.Id == element.DepartureId))
+            {
+                element.DepartureAirport = this.Context.Airports.Include(c => c.Location).Single(a => a.Id == element.DepartureId);
+            }
         }
     }
 }

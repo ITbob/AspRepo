@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using TUI.Data.Access.Source.Unit;
 using TUI.Model.Shared.Source;
 
@@ -34,11 +37,11 @@ namespace TUI.Sandbox.Controllers
             }
             using (var session = this.Unit.GetSession())
             {
-                var info = id ?? -1;
-                var element = session.GetRepository().Get(info);
+                var notNullId = id ?? -1;
+                var element = session.GetRepository().Get(notNullId);
                 if (element == null)
                 {
-                    return GetUnavailableItemNotification();
+                    return GetNotFound<T>(notNullId);
                 }
                 return View(element);
             }
@@ -62,15 +65,28 @@ namespace TUI.Sandbox.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var session = this.Unit.GetSession())
+                try
                 {
-                    var repo = session.GetRepository();
-                    repo.Add(item);
-                    session.Complete();
-                    return RedirectToAction("Index");
+                    using (var session = this.Unit.GetSession())
+                    {
+                        var repo = session.GetRepository();
+                        repo.Add(item);
+                        session.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception e)
+                {
+                    return GetProvokedErrorBy(e.Message);
                 }
             }
-            return this.GetErrorNotification();
+            return this.GetProvokedErrorBy(GetModelStateErrors());
+        }
+
+        private String GetModelStateErrors()
+        {
+            var errors = this.ModelState.Values.SelectMany(m => m.Errors);
+            return String.Join("", errors.Select(e => e.ErrorMessage));
         }
 
         [Authorize]
@@ -80,14 +96,14 @@ namespace TUI.Sandbox.Controllers
             {
                 return this.GetInvalidParameterNotification();
             }
-            var info = id ?? -1;
+            var notNullId = id ?? -1;
 
             using (var session = this.Unit.GetSession())
             {
-                T item = session.GetRepository().Get(info);
+                T item = session.GetRepository().Get(notNullId);
                 if (item == null)
                 {
-                    return GetUnavailableItemNotification();
+                    return GetNotFound<T>(notNullId);
                 }
 
                 this.SetViewBagDependencies(item);
@@ -104,18 +120,25 @@ namespace TUI.Sandbox.Controllers
         [Authorize]
         private ActionResult Editing(T item)
         {
-            using (var session = this.Unit.GetSession())
+            try
             {
-                var repo = session.GetRepository();
-                if (ModelState.IsValid)
+                using (var session = this.Unit.GetSession())
                 {
-                    repo.SetModified(item);
-                    session.Complete();
-                    return RedirectToAction("Index");
+                    var repo = session.GetRepository();
+                    if (ModelState.IsValid)
+                    {
+                        repo.SetModified(item);
+                        session.Complete();
+                        return RedirectToAction("Index");
+                    }
                 }
-                this.SetViewBagDependencies();
-                return View(item);
             }
+            catch (Exception e)
+            {
+                return GetProvokedErrorBy(e.Message);
+            }
+
+            return this.GetProvokedErrorBy(GetModelStateErrors());
         }
 
         [Authorize]
@@ -126,14 +149,14 @@ namespace TUI.Sandbox.Controllers
                 return this.GetInvalidParameterNotification();
             }
 
-            var info = id ?? -1;
+            var notNullId = id ?? -1;
 
             using (var container = this.Unit.GetSession())
             {
-                T item = container.GetRepository().Get(info);
+                T item = container.GetRepository().Get(notNullId);
                 if (item == null)
                 {
-                    return GetUnavailableItemNotification();
+                    return GetNotFound<T>(notNullId);
                 }
                 return View(item);
             }
@@ -144,13 +167,20 @@ namespace TUI.Sandbox.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            using (var session = this.Unit.GetSession())
+            try
             {
-                var repo = session.GetRepository();
-                T item = repo.Get(id);
-                repo.Remove(item);
-                session.Complete();
-                return RedirectToAction("Index");
+                using (var session = this.Unit.GetSession())
+                {
+                    var repo = session.GetRepository();
+                    T item = repo.Get(id);
+                    repo.Remove(item);
+                    session.Complete();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception e)
+            {
+                return GetProvokedErrorBy(e.Message);
             }
         }
     }

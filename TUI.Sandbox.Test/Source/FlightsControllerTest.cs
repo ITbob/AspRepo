@@ -57,7 +57,7 @@ namespace TUI.Sandbox.Test.Source
         {
             RedirectToRouteResult routeResult = this._controller.Details(1) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, the item is not available.", value);
+            Assert.AreEqual("Sorry, Flight 1 is not found.", value);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace TUI.Sandbox.Test.Source
         {
             RedirectToRouteResult routeResult = this._controller.Edit(1) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, the item is not available.", value);
+            Assert.AreEqual("Sorry, Flight 1 is not found.", value);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace TUI.Sandbox.Test.Source
         {
             RedirectToRouteResult routeResult = this._controller.Delete(1) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, the item is not available.", value);
+            Assert.AreEqual("Sorry, Flight 1 is not found.", value);
         }
     }
 }

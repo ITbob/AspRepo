@@ -186,7 +186,7 @@ namespace TUI.Sandbox.Test.Source.Scenarios
 
             RedirectToRouteResult routeResult = this._controller.GetFlights(flightInfo) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, departure is not available.", value);
+            Assert.AreEqual("Sorry, departure is not found.", value);
         }
 
         private void Dont_get_flight_because_wrong_date()

@@ -25,6 +25,7 @@ namespace TUI.Gasoline.Calculator.Test.Source
             Double gasolineFactor,
             Double expectedResult)
         {
+            // Arrange
             var deviceMock = new Mock<ITransportationDeviceKind>();
             deviceMock.Setup(p => p.Weight).Returns(weight);
             deviceMock.Setup(p => p.EngineFactor).Returns(engineFactor);
@@ -35,7 +36,10 @@ namespace TUI.Gasoline.Calculator.Test.Source
             gazMock.Setup(p => p.GasConsumptionCoefficient).Returns(gasolineFactor);
             var gaz = gazMock.Object;
 
+            // Act
             var result = device.GetAverageCoefficient(gaz);
+
+            //Assert
             Assert.AreEqual(expectedResult, result);
         }
 
@@ -60,6 +64,7 @@ namespace TUI.Gasoline.Calculator.Test.Source
             Double distance,
             Double expectedResult)
         {
+            // Arrange
             var deviceMock = new Mock<ITransportationDeviceKind>();
             deviceMock.Setup(p => p.Weight).Returns(weight);
             deviceMock.Setup(p => p.EngineFactor).Returns(engineFactor);
@@ -70,7 +75,10 @@ namespace TUI.Gasoline.Calculator.Test.Source
             gazMock.Setup(p => p.GasConsumptionCoefficient).Returns(gasolineFactor);
             var gaz = gazMock.Object;
 
+            // Act
             var result = device.GetAverageConsumption(gaz, distance);
+
+            //Assert
             Assert.AreEqual(expectedResult, result);
         }
 

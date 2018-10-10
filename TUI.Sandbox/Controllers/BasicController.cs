@@ -25,6 +25,15 @@ namespace TUI.Sandbox.Controllers
             return RedirectToAction("index", "notification", new { notification = message });
         }
 
+        protected ActionResult GetProvokedErrorBy(String reason)
+        {
+            return RedirectToAction("index", "notification", new
+            {
+                notification =
+                $"Sorry, an error is provoked by:{reason}"
+            });
+        }
+
         protected ActionResult GetErrorNotification()
         {
             return RedirectToAction("index", "notification", new { notification = "An error happened, sorry." });
@@ -39,18 +48,21 @@ namespace TUI.Sandbox.Controllers
             });
         }
 
-        protected ActionResult GetUnavailableItemNotification()
-        {
-            return RedirectToAction("index", "notification", new { notification = 
-                "Sorry, the item is not available." });
-        }
-
-        protected ActionResult GetUnavailableItemNotification(String name)
+        protected ActionResult GetNotFound<T>(Int32 code)
         {
             return RedirectToAction("index", "notification", new
             {
                 notification =
-                $"Sorry, {name} is not available."
+                $"Sorry, {typeof(T).Name} {code} is not found."
+            });
+        }
+
+        protected ActionResult GetNotFound(String name)
+        {
+            return RedirectToAction("index", "notification", new
+            {
+                notification =
+                $"Sorry, {name} is not found."
             });
         }
 

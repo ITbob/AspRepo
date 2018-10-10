@@ -48,7 +48,7 @@ namespace TUI.Sandbox.Test.Source
         {
             RedirectToRouteResult routeResult = this._controller.GetFlights(new Models.FlightSearch()) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, departure is not available.", value);
+            Assert.AreEqual("Sorry, departure is not found.", value);
         }
     }
 }

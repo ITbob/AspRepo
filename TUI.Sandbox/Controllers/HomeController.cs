@@ -94,12 +94,12 @@ namespace TUI.Sandbox.Controllers
         {
             if (!HasAirport(search.DepartureAirport))
             {
-                return GetUnavailableItemNotification("departure");
+                return GetNotFound("departure");
             }
 
             if (!HasAirport(search.ArrivalAirport))
             {
-                return GetUnavailableItemNotification("arrival");
+                return GetNotFound("arrival");
             }
 
             Airport departureAirport = null;

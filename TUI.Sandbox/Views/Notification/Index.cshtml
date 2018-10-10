@@ -8,5 +8,15 @@
 }
 else
 {
-    @ViewBag.Notification
+    if (@ViewBag.Notification is IEnumerable<String>)
+    {
+        foreach (var notif in @ViewBag.Notification)
+        {
+            @Html.Raw($"<p>{notif}</p>");
+        }
+    }
+    else
+    {
+        @ViewBag.Notification
+    }
 }

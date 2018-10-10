@@ -23,11 +23,10 @@ namespace TUI.Sandbox.Test.Source
             tui.Database.Delete();
 
             var cityUnit = new TuiContextUnit<City>(connection, RepoFactory.GetTuiContextRepo<City>());
-            var locationUnit = new TuiContextUnit<Location>(connection, RepoFactory.GetTuiContextRepo<Location>());
             var airportUnit = new TuiContextUnit<Airport>(connection, RepoFactory.GetTuiContextRepo<Airport>());
 
             this._controller =
-                new AirportsController(airportUnit, cityUnit, locationUnit);
+                new AirportsController(airportUnit, cityUnit);
         }
 
         [Test]
@@ -49,7 +48,7 @@ namespace TUI.Sandbox.Test.Source
         {
             RedirectToRouteResult routeResult = this._controller.Details(1) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, the item is not available.", value);
+            Assert.AreEqual("Sorry, Airport 1 is not found.", value);
         }
 
         [Test]
@@ -57,7 +56,7 @@ namespace TUI.Sandbox.Test.Source
         {
             RedirectToRouteResult routeResult = this._controller.Edit(1) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, the item is not available.", value);
+            Assert.AreEqual("Sorry, Airport 1 is not found.", value);
         }
 
         [Test]
@@ -65,7 +64,7 @@ namespace TUI.Sandbox.Test.Source
         {
             RedirectToRouteResult routeResult = this._controller.Delete(1) as RedirectToRouteResult;
             var value = routeResult.RouteValues["Notification"];
-            Assert.AreEqual("Sorry, the item is not available.", value);
+            Assert.AreEqual("Sorry, Airport 1 is not found.", value);
         }
     }
 }
