@@ -1,11 +1,10 @@
-﻿using InteractivePreGeneratedViews;
-using System;
-using System.Data.Entity;
+﻿using System;
 using System.Diagnostics;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TUI.Ado.Entity.Source;
 using TUI.Data.Access.Source;
 
 namespace TUI.Sandbox
@@ -20,30 +19,7 @@ namespace TUI.Sandbox
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             UnityConfig.RegisterComponents();
-
-            Database.SetInitializer(new TuiInitializer());
-            SetCache(Server.MapPath("~/App_Data/efcache.xml"));
-        }
-
-
-        //burk stong coupling with entity framework
-        private static void SetCache(String cachePath) 
-        {
-            using (var ctx = new TuiContext())
-            {
-                try
-                {
-                    InteractiveViews
-                        .SetViewCacheFactory(
-                            ctx,
-                            new SqlServerViewCacheFactory(ctx.Database.Connection.ConnectionString));
-                }
-                catch (Exception)
-                {
-                    Debug.WriteLine("not available");
-                }
-
-            }
+            DalHelper.Initalise();
         }
     }
 }

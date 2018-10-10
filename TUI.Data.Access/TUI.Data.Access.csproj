@@ -30,17 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="InteractivePreGeneratedViews, Version=1.0.0.0, Culture=neutral, PublicKeyToken=46c4868af4307d2c, processorArchitecture=MSIL">
-      <HintPath>..\packages\EFInteractiveViews.1.0.1\lib\net45\InteractivePreGeneratedViews.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,75 +41,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\Factory\RepoFactory.cs" />
-    <Compile Include="Source\OperationType.cs" />
-    <Compile Include="Source\HistoryLine.cs" />
-    <Compile Include="Source\Repositories\HistoryLineRepository.cs" />
-    <Compile Include="Source\Repositories\TuiContextRepository.cs" />
-    <Compile Include="Source\Repositories\CityRepository.cs" />
-    <Compile Include="Source\Repositories\LocationRepository.cs" />
-    <Compile Include="Source\Repositories\PlaneRepository.cs" />
-    <Compile Include="Source\Repositories\UserRepository.cs" />
+    <Compile Include="Source\DalHelper.cs" />
+    <Compile Include="Source\IInitialiser.cs" />
+    <Compile Include="Source\OperationInfo.cs" />
     <Compile Include="Source\Session\ISession.cs" />
     <Compile Include="Source\Session\SessionTracker.cs" />
-    <Compile Include="Source\Session\TuiContextSession.cs" />
-    <Compile Include="Source\Session\TuiContextStringLessSession.cs" />
-    <Compile Include="Source\Repositories\AirportRepository.cs" />
-    <Compile Include="Source\Repositories\FlightRepository.cs" />
     <Compile Include="Source\Repositories\IRepository.cs" />
-    <Compile Include="Source\TuiInitializer.cs" />
-    <Compile Include="Source\TuiContext.cs" />
-    <Compile Include="Source\TuiTestInitializer.cs" />
-    <Compile Include="Source\Unit\AirportUnit.cs" />
-    <Compile Include="Source\Unit\CityUnit.cs" />
-    <Compile Include="Source\Unit\FlightUnit.cs" />
-    <Compile Include="Source\Unit\HistoryUnit.cs" />
     <Compile Include="Source\Unit\IUnit.cs" />
-    <Compile Include="Source\Unit\LocationUnit.cs" />
-    <Compile Include="Source\Unit\PlaneUnit.cs" />
-    <Compile Include="Source\Unit\Tracker\AirportTracker.cs" />
-    <Compile Include="Source\Unit\Tracker\CityTracker.cs" />
-    <Compile Include="Source\Unit\Tracker\FlightTracker.cs" />
-    <Compile Include="Source\Unit\Tracker\LocationTracker.cs" />
-    <Compile Include="Source\Unit\Tracker\PlaneTracker.cs" />
     <Compile Include="Source\Unit\Tracker\UnitTracker.cs" />
-    <Compile Include="Source\Unit\Tracker\UserTracker.cs" />
-    <Compile Include="Source\Unit\TuiContextUnit.cs" />
-    <Compile Include="Source\Unit\UserUnit.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TUI.Gasoline\TUI.Gasoline.csproj">
-      <Project>{27162197-8457-49B6-AE21-DC96AE4643A8}</Project>
-      <Name>TUI.Gasoline</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TUI.Login\TUI.Login.csproj">
-      <Project>{8F41020A-E4A2-459D-B3BA-049D707A0C4C}</Project>
-      <Name>TUI.Login</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TUI.Model.Shared\TUI.Model.Shared.csproj">
-      <Project>{FCEAAB1E-1596-433F-B51F-2C029418D119}</Project>
-      <Name>TUI.Model.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TUI.Places.Air\TUI.Places.Air.csproj">
-      <Project>{d2a8b781-9339-436d-8295-80046a10262c}</Project>
-      <Name>TUI.Places.Air</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TUI.Places\TUI.Places.csproj">
-      <Project>{D86DB577-3604-4072-8A8D-C3E1B6A546EC}</Project>
-      <Name>TUI.Places</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TUI.Transportations.Air\TUI.Transportations.Air.csproj">
-      <Project>{E90F39E7-C0F6-4C32-A230-EBDC3D057C5C}</Project>
-      <Name>TUI.Transportations.Air</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TUI.Transportations\TUI.Transportations.csproj">
-      <Project>{1B7F6C32-DDA1-4FCD-A671-583484BC8012}</Project>
-      <Name>TUI.Transportations</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TUI.Model.Shared\TUI.Model.Shared.csproj">
+      <Project>{FCEAAB1E-1596-433F-B51F-2C029418D119}</Project>
+      <Name>TUI.Model.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Report\TUI.Report.csproj">
+      <Project>{51EFD345-1DC4-42E4-8946-53C95CFB5546}</Project>
+      <Name>TUI.Report</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

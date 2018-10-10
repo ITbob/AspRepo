@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using TUI.Data.Access.Source.Factory;
-using TUI.Data.Access.Source.Repositories;
+﻿using System.Web.Mvc;
 using TUI.Data.Access.Source.Unit;
 using TUI.Model.Shared.Source;
 
@@ -21,6 +15,7 @@ namespace TUI.Sandbox.Controllers
         }
 
         protected abstract void SetViewBagDependencies();
+        protected abstract void SetViewBagDependencies(T item);
 
         public ActionResult Index()
         {
@@ -95,7 +90,7 @@ namespace TUI.Sandbox.Controllers
                     return GetUnavailableItemNotification();
                 }
 
-                this.SetViewBagDependencies();
+                this.SetViewBagDependencies(item);
                 return View(item);
             }
         }

@@ -1,16 +1,18 @@
 using System.Web.Mvc;
+using TUI.Ado.Entity.Source;
+using TUI.Ado.Entity.Source.Unit;
+using TUI.Ado.Entity.Source.Unit.Tracker;
 using TUI.Data.Access.Source;
 using TUI.Data.Access.Source.Unit;
-using TUI.Data.Access.Source.Unit.Tracker;
 using TUI.Login.source;
 using TUI.Places.Source;
+using TUI.Report.Source;
 using TUI.Sandbox.Controllers;
 using TUI.TimeZone.Source;
 using TUI.TimeZone.Source.Api.Google;
 using TUI.Transportations.Air;
 using TUI.Transportations.Air.Source;
 using Unity;
-using Unity.Injection;
 using Unity.Mvc5;
 
 namespace TUI.Sandbox
@@ -39,8 +41,10 @@ namespace TUI.Sandbox
             container.RegisterType<IUnit<User>, UserTracker>();
             container.RegisterType<IUnit<HistoryLine>, HistoryUnit>();
             container.RegisterType<ITimeZoneApi, GoogleTimeZoneApi>();
+            container.RegisterType<IInitialiser, TuiInitialiser>();
 
             TimeZoneHelper.Api = container.Resolve<ITimeZoneApi>();
+            DalHelper.Set(container.Resolve<IInitialiser>());
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

@@ -107,6 +107,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TUI.Ado.Entity\TUI.Ado.Entity.csproj">
+      <Project>{7E349D19-0617-4194-9CF4-1227A49E47D8}</Project>
+      <Name>TUI.Ado.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TUI.Data.Access\TUI.Data.Access.csproj">
       <Project>{4FCEE010-1484-400F-8EED-AFC08FC669EC}</Project>
       <Name>TUI.Data.Access</Name>
@@ -130,6 +134,10 @@
     <ProjectReference Include="..\TUI.Places\TUI.Places.csproj">
       <Project>{d86db577-3604-4072-8a8d-c3e1b6a546ec}</Project>
       <Name>TUI.Places</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TUI.Report\TUI.Report.csproj">
+      <Project>{51EFD345-1DC4-42E4-8946-53C95CFB5546}</Project>
+      <Name>TUI.Report</Name>
     </ProjectReference>
     <ProjectReference Include="..\TUI.Sandbox\TUI.Sandbox.csproj">
       <Project>{282ba2b1-12c6-4609-83ce-830d157b38ad}</Project>

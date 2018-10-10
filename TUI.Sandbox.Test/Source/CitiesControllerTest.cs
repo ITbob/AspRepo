@@ -1,16 +1,10 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using TUI.Data.Access.Source;
-using TUI.Data.Access.Source.Factory;
-using TUI.Data.Access.Source.Unit;
+using TUI.Ado.Entity.Source;
+using TUI.Ado.Entity.Source.Factory;
+using TUI.Ado.Entity.Source.Unit;
 using TUI.Places.Source;
 using TUI.Sandbox.Controllers;
 

@@ -42,5 +42,14 @@ namespace TUI.Sandbox.Controllers
         {
             return base.Edit(item);
         }
+
+        protected override void SetViewBagDependencies(City item)
+        {
+            using (var session = this._locationUnit.GetSession())
+            {
+                ViewBag.LocationId = new SelectList(
+                    session.GetRepository().GetAll(), "Id", "Description");
+            }
+        }
     }
 }

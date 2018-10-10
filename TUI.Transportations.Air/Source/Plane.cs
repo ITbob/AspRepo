@@ -29,7 +29,7 @@ namespace TUI.Transportations.Air.Source
 
         public override string ToString()
         {
-            return $"{Id} ({Kind.Name})";
+            return $"[{this.Id}] ({Kind.Name})";
         }
 
         //maintenance statistic, number of flights...

@@ -10,11 +10,13 @@ namespace TUI.Sandbox.Models
     {
         [Required]
         public String DepartureAirport { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime BeginningDate { get; set; }
         [Required]
         public String ArrivalAirport { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime EndingDate { get; set; }
     }
 }

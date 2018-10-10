@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TUI.Data.Access.Source;
 using TUI.Data.Access.Source.Unit;
+using TUI.Report.Source;
 
 namespace TUI.Sandbox.Controllers
 {
@@ -22,8 +23,9 @@ namespace TUI.Sandbox.Controllers
         {
             using (var session = this._historyUnit.GetSession())
             {
-                var items = session.GetRepository();
-                return View(items.GetAll());
+                var repo = session.GetRepository();
+                var items = repo.GetAll();
+                return View(items);
             }
         }
     }

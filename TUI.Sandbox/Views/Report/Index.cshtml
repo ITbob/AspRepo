@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TUI.Data.Access.Source.HistoryLine>
+﻿@model IEnumerable<TUI.Report.Source.HistoryLine>
 
 @{
     ViewBag.Title = "Index";
@@ -21,24 +21,30 @@
         <th>
             @Html.DisplayNameFor(model => model.Datetime)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Operation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datetime)
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Operation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+    </tr>
     }
 
 </table>

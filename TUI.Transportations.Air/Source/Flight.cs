@@ -20,7 +20,7 @@ namespace TUI.Transportations.Air
         public Int32 Id { get; set; }
 
         [DataType(DataType.DateTime), Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; } = DateTime.MinValue;
 
         public Location Departure => DepartureAirport.Location;
@@ -76,8 +76,8 @@ namespace TUI.Transportations.Air
         //to put in a static extension method???
         public TimeSpan GetDuration()
         {
-            var result = (double) ( (double)this.GetDistanceKm() 
-                / (double)this.Plane.Kind.KmsHourSpeedAverage);
+            var result = this.GetDistanceKm()
+                / this.Plane.Kind.KmsHourSpeedAverage;
             return TimeSpan.FromHours(result);
         }
 
@@ -96,11 +96,11 @@ namespace TUI.Transportations.Air
             return utc.IsReceived;
         }
 
-        public String Description => this.ToString();
+        public String Description => $"From {this.DepartureAirport} to {this.ArrivalAirport} ";
 
         public override string ToString()
         {
-            return $"From {this.DepartureAirport} to {this.ArrivalAirport}";
+            return $"[{this.Id}] From {this.DepartureAirport} to {this.ArrivalAirport} {this.GetDistanceKm()}Km {this.StartDate}";
         }
 
         public DateTime GetEndDateWithoutUtc()

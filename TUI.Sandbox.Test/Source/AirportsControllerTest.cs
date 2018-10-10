@@ -3,12 +3,10 @@ using TUI.Sandbox.Controllers;
 using System.Web.Mvc;
 using System.Configuration;
 using System;
-using TUI.Data.Access.Source;
-using System.Web;
-using TUI.Data.Access.Source.Unit;
 using TUI.Places.Source;
-using TUI.Data.Access.Source.Factory;
-using System.Data.Entity;
+using TUI.Ado.Entity.Source.Unit;
+using TUI.Ado.Entity.Source;
+using TUI.Ado.Entity.Source.Factory;
 
 namespace TUI.Sandbox.Test.Source
 {

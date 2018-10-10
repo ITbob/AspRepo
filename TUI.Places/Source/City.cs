@@ -63,5 +63,10 @@ namespace TUI.Places.Source
                 this.Location.Latitude = value;
             }
         }
+
+        public override string ToString()
+        {
+            return $"[{this.Id}] {this.Name} {this.Location.ToString()}";
+        }
     }
 }

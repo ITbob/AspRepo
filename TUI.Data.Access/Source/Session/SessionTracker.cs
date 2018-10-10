@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TUI.Data.Access.Source.Factory;
 using TUI.Data.Access.Source.Repositories;
 using TUI.Data.Access.Source.Unit;
 using TUI.Model.Shared.Source;
+using TUI.Report.Source;
 
 namespace TUI.Data.Access.Source.Session
 {
@@ -48,11 +45,12 @@ namespace TUI.Data.Access.Source.Session
             }
         }
 
-        private void OnOperated(Object obj, OperationType operation)
+        private void OnOperated(Object obj, OperationInfo info)
         {
             this._lastRecords.Add(new HistoryLine()
             {
-                Operation = operation,
+                Operation = info.Operation,
+                Description = info.obj.ToString(),
                 Datetime = DateTime.Now,
                 DateType = typeof(T).Name
             });

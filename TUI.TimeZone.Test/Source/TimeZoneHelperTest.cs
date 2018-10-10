@@ -68,8 +68,6 @@ namespace TUI.TimeZone.Test.Source
         [Test]
         public void Should_Be_3Hours_and_30minutes_between_Paris_and_Calcutta_When_Using_Mock()
         {
-            var result = DateTime.MinValue;
-
             var mock = new Mock<ITimeZoneApi>();
             mock.Setup(v => v.GetLocalTime(
                     this._calcutta,
@@ -110,7 +108,6 @@ namespace TUI.TimeZone.Test.Source
         [Test]
         public void Should_Be_Failed_When_First_Local_Time_Is_Wrong()
         {
-            var result = DateTime.MinValue;
 
             var mock = new Mock<ITimeZoneApi>();
             mock.Setup(v => v.GetLocalTime(
@@ -133,8 +130,6 @@ namespace TUI.TimeZone.Test.Source
         [Test]
         public void Should_Be_Failed_When_Second_Local_Time_Is_Wrong()
         {
-            var result = DateTime.MinValue;
-
             var mock = new Mock<ITimeZoneApi>();
             mock.Setup(v => v.GetLocalTime(
                     this._calcutta,

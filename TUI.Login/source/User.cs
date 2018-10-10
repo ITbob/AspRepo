@@ -18,5 +18,10 @@ namespace TUI.Login.source
         [Required]
         [DataType(DataType.Password)]
         public String Password { get; set; }
+
+        public override string ToString()
+        {
+            return $"[{this.Id}] {this.Name}";
+        }
     }
 }

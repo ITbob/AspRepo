@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TUI.Report.Source;
 
 namespace TUI.Data.Access.Source.Repositories
 {
@@ -21,6 +21,6 @@ namespace TUI.Data.Access.Source.Repositories
         void RemoveRange(IEnumerable<T> element);
 
         void SetModified(T element);
-        EventHandler<OperationType> Operated { get; set; }
+        EventHandler<OperationInfo> Operated { get; set; }
     }
 }

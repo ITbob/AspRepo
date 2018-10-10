@@ -66,7 +66,8 @@ namespace TUI.Places.Source
             }
         }
 
-        public String Description => this.ToString();
+        public String Description => City != null ? $" {this.Name} ({this.City.Name}) {this.Location}"
+                : $"{this.Name} {this.Location}";
 
         public Airport()
         {
@@ -86,7 +87,8 @@ namespace TUI.Places.Source
 
         public override string ToString()
         {
-            return City != null ? $"{Name} ({City.Name})" : Name;
+            return City != null ? $"[{this.Id}] {this.Name} ({this.City.Name}) {this.Location}" 
+                : $"[{this.Id}]{this.Name} {this.Location}";
         }
     }
 }

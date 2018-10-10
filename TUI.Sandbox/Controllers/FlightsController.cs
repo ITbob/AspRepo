@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using TUI.Data.Access.Source.Unit;
 using TUI.Places.Source;
 using TUI.Transportations.Air;
@@ -19,18 +20,65 @@ namespace TUI.Sandbox.Controllers
             this._planeUnit = planeUnit;
         }
 
+        protected override void SetViewBagDependencies(Flight item)
+        {
+            using (var session = this._airportUnit.GetSession())
+            {
+                var airports = session.GetRepository().GetAll();
+                var arrivals = new List<SelectListItem>();
+                foreach (var airport in airports)
+                {
+                    arrivals.Add(new SelectListItem()
+                    {
+                        Value = airport.Id.ToString(),
+                        Text = airport.Description,
+                        Selected = airport.Id == item.ArrivalId
+                    });
+                }
+
+                var departures = new List<SelectListItem>();
+                foreach (var airport in airports)
+                {
+                    departures.Add(new SelectListItem()
+                    {
+                        Value = airport.Id.ToString(),
+                        Text = airport.Description,
+                        Selected = airport.Id == item.ArrivalId
+                    });
+                }
+
+                ViewBag.Departures = arrivals;
+                ViewBag.Arrivals = departures;
+            }
+
+            using (var session = this._planeUnit.GetSession())
+            {
+                var planes = new List<SelectListItem>();
+                foreach (var plane in session.GetRepository().GetAll())
+                {
+                    planes.Add(new SelectListItem()
+                    {
+                        Value = plane.Id.ToString(),
+                        Text = plane.Description,
+                        Selected = plane.Id == item.PlaneId
+                    });
+                }
+                ViewBag.Planes = planes;
+            }
+        }
+
         protected override void SetViewBagDependencies()
         {
             using (var session = this._airportUnit.GetSession())
             {
                 var airports = session.GetRepository().GetAll();
-                ViewBag.DepartureId = new SelectList(airports, "Id", "Description");
-                ViewBag.ArrivalId = new SelectList(airports, "Id", "Description");
+                ViewBag.Departures = new SelectList(airports, "Id", "Description");
+                ViewBag.Arrivals = new SelectList(airports, "Id", "Description");
             }
 
             using (var session = this._planeUnit.GetSession())
             {
-                ViewBag.PlaneId = new SelectList(session.GetRepository().GetAll(), "Id", "Description");
+                ViewBag.Planes = new SelectList(session.GetRepository().GetAll(), "Id", "Description");
             }
         }
 
@@ -48,5 +96,7 @@ namespace TUI.Sandbox.Controllers
         {
             return base.Edit(item);
         }
+
+
     }
 }

@@ -86,3 +86,9 @@ C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\TUI.Tran
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\TUI.Transportations.dll.config
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\obj\Debug\TUI.Data.Access.Test.csproj.CoreCompileInputs.cache
 C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\obj\Debug\TUI.Data.Access.Test.csproj.CopyComplete
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\TUI.Ado.Entity.dll
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\TUI.Report.dll
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\TUI.Ado.Entity.pdb
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\TUI.Ado.Entity.dll.config
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\TUI.Report.pdb
+C:\Users\Freddy\source\repos\TUI.Project\TUI.Data.Access.Test\bin\Debug\InteractivePreGeneratedViews.dll
